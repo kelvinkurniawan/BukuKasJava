@@ -46,7 +46,7 @@ public class Users {
     
     }
     
-    public ResultSet checkUser() throws SQLException{
+    public ResultSet getUserByUsername() throws SQLException{
         
         String sql = "SELECT * FROM users where "+ TableConfig._user_username + " = '" + name + "'";
         
