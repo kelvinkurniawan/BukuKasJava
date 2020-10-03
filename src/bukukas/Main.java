@@ -5,17 +5,36 @@
  */
 package bukukas;
 
+import modules.DBConnection;
+
+import java.sql.Connection;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author kelvi
  */
 public class Main {
+    
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public static ResultSet rs;
+    
+    public static void main(String[] args) throws SQLException {
+        
+        DBConnection db = new DBConnection();
+        
+        rs = db.executeQuery("SELECT * from users");
+        
+        while(rs.next()){
+            System.out.println("User ID: " + rs.getInt("UserId"));
+            System.out.println("Nama: " + rs.getString("name"));
+            System.out.println("Email: " + rs.getString("email"));
+        }
+        
+        db.closeQuery();
+
     }
     
 }
