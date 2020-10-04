@@ -14,7 +14,7 @@ import models.Transaction;
 import modules.DBConnection;
 import modules.SessionManager;
 import views.AddTransaction;
-import views.SetSaldo;
+import views.SetBalance;
 
 /**
  *
@@ -27,14 +27,6 @@ public class TransactionController {
     
     DBConnection db = new DBConnection();
     Transaction transaction = new Transaction(SessionManager.userId);
-    
-    public void displayAddTransaction(){
-        new AddTransaction().setVisible(true);
-    }
-    
-    public void displaySetSaldo(){
-        new SetSaldo().setVisible(true);
-    }
     
     public int getIncome(){
         

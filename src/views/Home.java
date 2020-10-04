@@ -5,6 +5,7 @@
  */
 package views;
 import controllers.BalanceController;
+import controllers.HomeController;
 import controllers.TransactionController;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -359,13 +360,13 @@ public class Home extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        new TransactionController().displaySetSaldo();
+        new HomeController().displaySetBalance();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        new TransactionController().displayAddTransaction();
+        new HomeController().displayAddTransaction();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

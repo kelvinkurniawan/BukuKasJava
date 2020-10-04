@@ -36,7 +36,7 @@ public class Balance {
         
         boolean result;
         
-        String sql = "Insert into tb_m_balance(" + TableConfig._balance_balance + ") values ('" + newBalance + "')";
+        String sql = "Insert into tb_m_balance(" + TableConfig._balance_balance + ", " + TableConfig._balance_userId + ") values ('" + newBalance + "', '" + this.Id + "')";
         
         result = db.execute(sql);
         

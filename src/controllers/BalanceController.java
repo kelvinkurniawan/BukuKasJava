@@ -52,11 +52,13 @@ public class BalanceController {
         return 0;
     }
     
-    public void setBalance(String newBalance) throws SQLException{
+    public boolean setBalance(String newBalance) throws SQLException{
         if(isExist){
             balance.updateBalance(Integer.parseInt(newBalance));
+            return true;
         }else{
             balance.addBalance(Integer.parseInt(newBalance));
+            return true;
         }
     }
     

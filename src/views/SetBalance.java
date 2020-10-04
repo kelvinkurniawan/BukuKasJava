@@ -5,19 +5,34 @@
  */
 package views;
 
+import controllers.BalanceController;
 import controllers.HomeController;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author ASUS
  */
-public class SetSaldo extends javax.swing.JFrame {
+public class SetBalance extends javax.swing.JFrame {
 
+    BalanceController bc = new BalanceController();
+    
     /**
      * Creates new form SetSaldo
      */
-    public SetSaldo() {
+    public SetBalance() {
         initComponents();
+        prepareScreen();
+    }
+    
+    public final void prepareScreen(){
+        try {
+            txtSaldoAwal.setText(Integer.toString(bc.getBalance()));
+        } catch (SQLException ex) {
+            Logger.getLogger(SetBalance.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -67,6 +82,11 @@ public class SetSaldo extends javax.swing.JFrame {
         btnSave.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         btnSave.setText("Save");
         btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         btnBack.setBackground(new java.awt.Color(244, 106, 93));
         btnBack.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
@@ -139,6 +159,17 @@ public class SetSaldo extends javax.swing.JFrame {
         new HomeController().displayHomeScreen();
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        try {
+            // TODO add your handling code here:
+            bc.setBalance(txtSaldoAwal.getText());
+            this.setVisible(false);
+            new Home().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(SetBalance.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -156,21 +187,23 @@ public class SetSaldo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SetSaldo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SetBalance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SetSaldo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SetBalance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SetSaldo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SetBalance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SetSaldo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SetBalance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SetSaldo().setVisible(true);
+                new SetBalance().setVisible(true);
             }
         });
     }
