@@ -6,8 +6,10 @@
 package models;
 
 import modules.DBConnection;
+import config.TableConfig;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -22,5 +24,37 @@ public class Users {
     private String password;
     private String phone;
     
+    DBConnection db = new DBConnection();
+    
+    public Users(String name, String email, String username, String password, String phone){
+        this.name = name;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.phone = phone;
+    }
+    
+    public Users(){
+        
+    }
+    
+    public boolean addUser() throws SQLException{
+        
+        String sql = "INSERT INTO users ("+ TableConfig._user_name +", "+ TableConfig._user_email + ", "+ TableConfig._user_username +", "+ TableConfig._user_password +", "+ TableConfig._user_phone +") VALUES ('" + name + "', '" + email + "', '" + username + "', '" + password + "', '" + phone + "');";
+    
+        return db.execute(sql);
+    
+    }
+    
+    public ResultSet getUserByUsername() throws SQLException{
+        
+        String sql = "SELECT * FROM users where "+ TableConfig._user_username + " = '" + name + "'";
+        
+        rs = db.executeQuery(sql);
+        
+        return rs;
+        
+    }
+   
 
 }

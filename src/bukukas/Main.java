@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import modules.Encryption;
+import views.Login;
 
 /**
  *
@@ -23,18 +25,20 @@ public class Main {
     
     public static void main(String[] args) throws SQLException {
         
-        DBConnection db = new DBConnection();
-        
-        rs = db.executeQuery("SELECT * from users");
-        
-        while(rs.next()){
-            System.out.println("User ID: " + rs.getInt("UserId"));
-            System.out.println("Nama: " + rs.getString("name"));
-            System.out.println("Email: " + rs.getString("email"));
-        }
-        
-        db.closeQuery();
+//        DBConnection db = new DBConnection();
+//        
+//        rs = db.executeQuery("SELECT * from users");
+//        
+//        while(rs.next()){
+//            System.out.println("User ID: " + rs.getInt("UserId"));
+//            System.out.println("Nama: " + rs.getString("name"));
+//            System.out.println("Email: " + rs.getString("email"));
+//        }
+//        
+//        db.closeQuery();
 
+        new Login().setVisible(true);
+        
     }
     
 }

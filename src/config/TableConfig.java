@@ -23,4 +23,13 @@ public class TableConfig {
     public static final String _balance_balanceId = "BalanceId";
     public static final String _balance_balance = "balance";   
     public static final String _balance_userId = "UserId";
+    
+    // Table Transaction
+    public static final String _transaction_transId = "UransId";  
+    public static final String _transaction_transType = "UransType";
+    public static final String _transaction_DtransType = "UransType"; 
+    public static final String _transaction_totalTrans = "UotalTrans";
+    public static final String _transaction_time = "Time";   
+    public static final String _transaction_userId = "UserId"; 
+
 }
