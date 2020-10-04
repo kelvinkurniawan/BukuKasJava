@@ -39,13 +39,11 @@ public class Transaction {
         return db.executeQuery(sql);
     }
 
-    public ResultSet getTransactionByUserFiltered(String typeTrans) throws SQLException{
+    public ResultSet getTransactionByUserFiltered(String filter) throws SQLException{
 
-        String sql = "Select * from tb_m_transaction where " + TableConfig._transaction_userId  + " = '" + this.UserId + "' and " + TableConfig._transaction_transType + " = '" + TransType + "'";
+        String sql = "Select * from tb_m_transaction where " + TableConfig._transaction_userId  + " = '" + this.UserId + "' and " + TableConfig._transaction_transType + " = '" + filter + "'";
 
-        rs = db.executeQuery(sql);
-        
-        return rs;
+        return db.executeQuery(sql);
 
     }
 

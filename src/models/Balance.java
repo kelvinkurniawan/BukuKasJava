@@ -20,8 +20,8 @@ public class Balance {
     
     DBConnection db = new DBConnection();
     
-    public Balance(String Id){
-        this.Id = Integer.parseInt(Id);
+    public Balance(int Id){
+        this.Id = Id;
     }
     
     public ResultSet getBalanceById() throws SQLException{

@@ -7,7 +7,10 @@ package controllers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import models.Balance;
+import modules.SessionManager;
 
 /**
  *
@@ -20,7 +23,11 @@ public class BalanceController {
     public String id;
     public boolean isExist = false;
     
-    Balance balance = new Balance(id);
+    // Controller
+    TransactionController tc = new TransactionController();
+    
+    // Model
+    Balance balance = new Balance(SessionManager.userId);
     
     public int getBalance() throws SQLException{
         
@@ -33,6 +40,16 @@ public class BalanceController {
             return 0;
         }
         
+    }
+    
+    public int currentlyBalance(){
+        try {
+            return this.getBalance() + tc.getIncome() - tc.getOutcome();
+        } catch (SQLException ex) {
+            Logger.getLogger(BalanceController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return 0;
     }
     
     public void setBalance(String newBalance) throws SQLException{

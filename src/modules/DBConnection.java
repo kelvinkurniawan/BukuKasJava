@@ -53,9 +53,7 @@ public class DBConnection {
         
         stmt = conn.createStatement();
 
-        rs = stmt.executeQuery(sql);
-        
-        return rs;
+        return stmt.executeQuery(sql);
         
     }
     

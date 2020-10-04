@@ -7,12 +7,14 @@ package controllers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import models.Transaction;
 import modules.DBConnection;
 import modules.SessionManager;
-import views.Home;
-import views.TambahTransaksi;
+import views.AddTransaction;
+import views.SetSaldo;
 
 /**
  *
@@ -27,9 +29,45 @@ public class TransactionController {
     Transaction transaction = new Transaction(SessionManager.userId);
     
     public void displayAddTransaction(){
-        new TambahTransaksi().setVisible(true);
+        new AddTransaction().setVisible(true);
     }
     
+    public void displaySetSaldo(){
+        new SetSaldo().setVisible(true);
+    }
+    
+    public int getIncome(){
+        
+        int result = 0;
+        
+        try {
+            rs = transaction.getTransactionByUserFiltered("Income");
+            
+            while(rs.next()){
+                result += rs.getInt("TotalTrans");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TransactionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return result;
+    }
+    
+    public int getOutcome(){
+        int result = 0;
+        
+        try {
+            rs = transaction.getTransactionByUserFiltered("Outcome");
+            
+            while(rs.next()){
+                result += rs.getInt("TotalTrans");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TransactionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return result;
+    }
     
     // Generate tabel
     public final DefaultTableModel generateTableModel(){
@@ -39,13 +77,8 @@ public class TransactionController {
         try {
 
             rs = transaction.getTransactionByUser();
-
             
             while(rs.next()){
-                
-                System.out.println("test");
-                
-                System.out.println(rs.getString("TransType"));
                 
                 String type = rs.getString("TransType");
                 String nominal = rs.getString("TotalTrans");
@@ -61,7 +94,6 @@ public class TransactionController {
         } catch (SQLException ex) {
            // Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
         
         return tableModel;
 
