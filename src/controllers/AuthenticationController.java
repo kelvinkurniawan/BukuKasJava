@@ -8,6 +8,8 @@ package controllers;
 
 import java.sql.SQLException;
 import models.Users;
+
+import modules.Encryption;
 /**
  *
  * @author kelvi
@@ -18,7 +20,7 @@ public class AuthenticationController {
         Users users = new Users(null, null, username, password, null);
         
         if(users.getUserByUsername().next()){
-          if(users.getUserByUsername().getString("password").equals(password)){
+          if(Encryption.getDecrypt(users.getUserByUsername().getString("password")).equals(password)){
               // Login success
           }else{
               // Login error
@@ -30,7 +32,7 @@ public class AuthenticationController {
     }
     
     public void register(String name, String email, String username, String password, String phone) throws SQLException{
-        Users users = new Users(name, email, username, password, phone);
+        Users users = new Users(name, email, username, Encryption.getEncrypt(password), phone);
         
         if(users.addUser()){
             // set alert
