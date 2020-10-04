@@ -12,6 +12,7 @@ import models.Transaction;
 import modules.DBConnection;
 import modules.SessionManager;
 import views.Home;
+import views.TambahTransaksi;
 
 /**
  *
@@ -25,10 +26,12 @@ public class TransactionController {
     DBConnection db = new DBConnection();
     Transaction transaction = new Transaction(SessionManager.userId);
     
-    public void addTransaction(){
-        
+    public void displayAddTransaction(){
+        new TambahTransaksi().setVisible(true);
     }
     
+    
+    // Generate tabel
     public final DefaultTableModel generateTableModel(){
 
         String[] columnNames = {"Tipe", "Nominal", "Keterangan", "Tanggal"};
