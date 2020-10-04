@@ -6,6 +6,7 @@
 package controllers;
 
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import models.Users;
 
@@ -16,30 +17,29 @@ import modules.Encryption;
  */
 public class AuthenticationController {
     
-    public void login(String username, String password) throws SQLException{
-        Users users = new Users(null, null, username, password, null);
+    public static ResultSet rs;
+    
+    public boolean login(String username, String password) throws SQLException{
+        Users users = new Users(null, null, null, username, password);
         
-        if(users.getUserByUsername().next()){
-          if(Encryption.getDecrypt(users.getUserByUsername().getString("password")).equals(password)){
-              // Login success
+        rs = users.getUserByUsername();
+        
+        if(rs.next()){
+          if(Encryption.getDecrypt(rs.getString("password")).equals(password)){
+              return true;
           }else{
-              // Login error
+              return false;
           }
         }else{
-            // Login error
+            return false;
         }
         
     }
     
-    public void register(String name, String email, String username, String password, String phone) throws SQLException{
-        Users users = new Users(name, email, username, Encryption.getEncrypt(password), phone);
+    public boolean register(String name, String email, String phone, String username, String password) throws SQLException{
+        Users users = new Users(name, email, phone,  username, Encryption.getEncrypt(password));
         
-        if(users.addUser()){
-            // set alert
-            System.out.println("User created!");
-        }else{
-            System.out.println("Something went wrong");
-        }
+        return users.addUser(); // set alert
     }
             
 }

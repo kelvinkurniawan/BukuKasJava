@@ -26,7 +26,7 @@ public class Users {
     
     DBConnection db = new DBConnection();
     
-    public Users(String name, String email, String username, String password, String phone){
+    public Users(String name, String email, String phone, String username, String password){
         this.name = name;
         this.email = email;
         this.username = username;
@@ -40,7 +40,7 @@ public class Users {
     
     public boolean addUser() throws SQLException{
         
-        String sql = "INSERT INTO users ("+ TableConfig._user_name +", "+ TableConfig._user_email + ", "+ TableConfig._user_username +", "+ TableConfig._user_password +", "+ TableConfig._user_phone +") VALUES ('" + name + "', '" + email + "', '" + username + "', '" + password + "', '" + phone + "');";
+        String sql = "INSERT INTO tb_m_user ("+ TableConfig._user_name +", "+ TableConfig._user_email + ", "+ TableConfig._user_username +", "+ TableConfig._user_password +", "+ TableConfig._user_phone +") VALUES ('" + name + "', '" + email + "', '" + username + "', '" + password + "', '" + phone + "')";
     
         return db.execute(sql);
     
@@ -48,7 +48,7 @@ public class Users {
     
     public ResultSet getUserByUsername() throws SQLException{
         
-        String sql = "SELECT * FROM users where "+ TableConfig._user_username + " = '" + name + "'";
+        String sql = "SELECT * FROM tb_m_user where "+ TableConfig._user_username + " = '" + username + "'";
         
         rs = db.executeQuery(sql);
         
