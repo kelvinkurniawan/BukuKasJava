@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 import models.Transaction;
+import modules.DBConnection;
+import modules.SessionManager;
 import views.Home;
 
 /**
@@ -19,10 +21,15 @@ public class TransactionController {
 
     public String userId;
     public ResultSet rs;
-
-    Transaction transaction = new Transaction(Integer.parseInt(userId));
-
-    public void showTransactionOnHomescreen(){
+    
+    DBConnection db = new DBConnection();
+    Transaction transaction = new Transaction(SessionManager.userId);
+    
+    public void addTransaction(){
+        
+    }
+    
+    public final DefaultTableModel generateTableModel(){
 
         String[] columnNames = {"Tipe", "Nominal", "Keterangan", "Tanggal"};
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
@@ -30,25 +37,31 @@ public class TransactionController {
 
             rs = transaction.getTransactionByUser();
 
+            
             while(rs.next()){
-                String type = rs.getString("TransactionType");
-                String nominal = rs.getString("Nominal");
+                
+                System.out.println("test");
+                
+                System.out.println(rs.getString("TransType"));
+                
+                String type = rs.getString("TransType");
+                String nominal = rs.getString("TotalTrans");
                 String desc = rs.getString("Description");
                 String time = rs.getString("Time");
-
                 String[] data = {type, nominal, desc, time};
-
 
                 tableModel.addRow(data);
             }
-
-
-            new Home().jTable1.setModel(tableModel);
-
+          
+            db.closeQuery();
 
         } catch (SQLException ex) {
            // Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
+        return tableModel;
 
     }
+    
 }

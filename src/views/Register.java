@@ -266,7 +266,6 @@ public class Register extends javax.swing.JFrame {
         
         try {
             auth.register(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jPasswordField1.getText());
-            new Login().setVisible(true);
             this.setVisible(false);
         } catch (SQLException ex) {
             Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);

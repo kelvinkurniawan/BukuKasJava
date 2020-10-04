@@ -27,18 +27,29 @@ public class Balance {
     public ResultSet getBalanceById() throws SQLException{
         String sql = "SELECT * from tb_m_balance where " + TableConfig._balance_userId + " =  '" + this.Id + "'";
         
-        return db.executeQuery(sql);
+        rs = db.executeQuery(sql);
+        
+        return rs;
     }
     
     public boolean addBalance(int newBalance) throws SQLException{
+        
+        boolean result;
+        
         String sql = "Insert into tb_m_balance(" + TableConfig._balance_balance + ") values ('" + newBalance + "')";
         
-        return db.execute(sql);
+        result = db.execute(sql);
+        
+        return result;
     }
     
     public boolean updateBalance(int newBalance) throws SQLException{
+        boolean result;
+        
         String sql = "Update tb_m_balance set " + TableConfig._balance_balance + " = '" + newBalance + "' where " + TableConfig._balance_userId + " = '" + this.Id + "'";
         
-        return db.execute(sql);
+        result = db.execute(sql);
+        
+        return result;
     }
 }

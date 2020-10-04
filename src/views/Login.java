@@ -7,6 +7,7 @@ package views;
 
 
 import controllers.AuthenticationController;
+import controllers.HomeController;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -182,9 +183,9 @@ public class Login extends javax.swing.JFrame {
         AuthenticationController auth = new AuthenticationController();
         
         try {
+            
             if(auth.login(jTextField1.getText(), jPasswordField1.getText())){
                 this.setVisible(false);
-                new Home().setVisible(true);
             }else{
                 System.out.println("Something went wrong!");
             }

@@ -5,25 +5,16 @@
  */
 package bukukas;
 
-import modules.DBConnection;
-
-import java.sql.Connection;
-import java.sql.Statement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import modules.Encryption;
-import views.Login;
+import controllers.AuthenticationController;
 
 /**
  *
  * @author kelvi
  */
 public class Main {
+  
     
-
-    public static ResultSet rs;
-    
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         
 //        DBConnection db = new DBConnection();
 //        
@@ -37,7 +28,7 @@ public class Main {
 //        
 //        db.closeQuery();
 
-        new Login().setVisible(true);
+        new AuthenticationController().displayLogin();
         
     }
     

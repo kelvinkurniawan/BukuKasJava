@@ -17,11 +17,14 @@ import config.TableConfig;
  * @author kelvi
  */
 public class Transaction {
+   
+    public static ResultSet rs;
+    
     private int TransId;
     private String TransType;
     private int TotalTrans;
     private String Description;
-    private int UserId;
+    private final int UserId;
 
     DBConnection db = new DBConnection();
 
@@ -34,14 +37,15 @@ public class Transaction {
         String sql = "Select * from tb_m_transaction where " + TableConfig._transaction_userId  + " = '" + this.UserId + "'";
 
         return db.executeQuery(sql);
-
     }
 
     public ResultSet getTransactionByUserFiltered(String typeTrans) throws SQLException{
 
         String sql = "Select * from tb_m_transaction where " + TableConfig._transaction_userId  + " = '" + this.UserId + "' and " + TableConfig._transaction_transType + " = '" + TransType + "'";
 
-        return db.executeQuery(sql);
+        rs = db.executeQuery(sql);
+        
+        return rs;
 
     }
 

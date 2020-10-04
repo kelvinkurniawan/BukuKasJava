@@ -4,18 +4,30 @@
  * and open the template in the editor.
  */
 package views;
+import controllers.TransactionController;
+import java.sql.ResultSet;
+import modules.SessionManager;
 
 /**
  *
  * @author ASUS
  */
 public class Home extends javax.swing.JFrame {
-
+    
+    public static ResultSet rs;
+    TransactionController tc = new TransactionController();
+    
     /**
      * Creates new form Home
      */
     public Home() {
         initComponents();
+        this.setTabel();
+    }
+    
+    public final void setTabel(){
+        jTable1.setModel(tc.generateTableModel());
+        System.out.println(SessionManager.userId);
     }
 
     /**

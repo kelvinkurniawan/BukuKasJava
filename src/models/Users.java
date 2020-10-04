@@ -40,9 +40,13 @@ public class Users {
     
     public boolean addUser() throws SQLException{
         
+        boolean result;
+        
         String sql = "INSERT INTO tb_m_user ("+ TableConfig._user_name +", "+ TableConfig._user_email + ", "+ TableConfig._user_username +", "+ TableConfig._user_password +", "+ TableConfig._user_phone +") VALUES ('" + name + "', '" + email + "', '" + username + "', '" + password + "', '" + phone + "')";
     
-        return db.execute(sql);
+        result =  db.execute(sql);
+        
+        return result;
     
     }
     
