@@ -16,7 +16,7 @@ import java.sql.SQLException;
  */
 public class Balance {
     public static ResultSet rs;
-    private int Id;
+    private final int Id;
     
     DBConnection db = new DBConnection();
     
@@ -25,7 +25,7 @@ public class Balance {
     }
     
     public ResultSet getBalanceById() throws SQLException{
-        String sql = "SELECT * from tb_m_balance where " + TableConfig._balance_userId + " =  '" + this.Id + "'";
+        String sql = "SELECT * from tb_m_balance where " + TableConfig.BALANCE_USERID + " =  '" + this.Id + "'";
         
         rs = db.executeQuery(sql);
         
@@ -36,7 +36,7 @@ public class Balance {
         
         boolean result;
         
-        String sql = "Insert into tb_m_balance(" + TableConfig._balance_balance + ", " + TableConfig._balance_userId + ") values ('" + newBalance + "', '" + this.Id + "')";
+        String sql = "Insert into tb_m_balance(" + TableConfig.BALANCE_BALANCE + ", " + TableConfig.BALANCE_USERID + ") values ('" + newBalance + "', '" + this.Id + "')";
         
         result = db.execute(sql);
         
@@ -46,7 +46,7 @@ public class Balance {
     public boolean updateBalance(int newBalance) throws SQLException{
         boolean result;
         
-        String sql = "Update tb_m_balance set " + TableConfig._balance_balance + " = '" + newBalance + "' where " + TableConfig._balance_userId + " = '" + this.Id + "'";
+        String sql = "Update tb_m_balance set " + TableConfig.BALANCE_BALANCE + " = '" + newBalance + "' where " + TableConfig.BALANCE_BALANCEID + " = '" + this.Id + "'";
         
         result = db.execute(sql);
         

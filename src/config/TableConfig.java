@@ -12,24 +12,24 @@ package config;
 public class TableConfig {
     
     // Table user
-    public static final String _user_name = "Name";
-    public static final String _user_email = "Email";   
-    public static final String _user_username = "Username";
-    public static final String _user_password = "Password";
-    public static final String _user_phone = "Telephone";
+    public static final String USER_NAME = "Name";
+    public static final String USER_EMAIL = "Email";   
+    public static final String USER_USERNAME = "Username";
+    public static final String USER_PASSWORD = "Password";
+    public static final String USER_PHONE = "Telephone";
     
     
     // Table balance
-    public static final String _balance_balanceId = "BalanceId";
-    public static final String _balance_balance = "balance";   
-    public static final String _balance_userId = "UserId";
+    public static final String BALANCE_BALANCEID = "BalanceId";
+    public static final String BALANCE_BALANCE = "balance";   
+    public static final String BALANCE_USERID = "UserId";
     
     // Table Transaction
-    public static final String _transaction_transId = "TransId";  
-    public static final String _transaction_transType = "TransType";
-    public static final String _transaction_totalTrans = "TotalTrans";
-    public static final String _transaction_description = "Description";
-    public static final String _transaction_time = "Time";   
-    public static final String _transaction_userId = "UserId"; 
+    public static final String TRANSACTION_TRANSID = "TransId";  
+    public static final String TRANSACTION_TRANSTYPE = "TransType";
+    public static final String TRANSACTION_TOTALTRANS = "TotalTrans";
+    public static final String TRANSACTION_DESCRIPTION = "Description";
+    public static final String TRANSACTION_TIME = "Time";   
+    public static final String TRANSACTION_USERID = "UserId"; 
 
 }

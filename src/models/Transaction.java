@@ -33,14 +33,14 @@ public class Transaction {
 
     public ResultSet getTransactionByUser() throws SQLException{
 
-        String sql = "Select * from tb_m_transaction where " + TableConfig._transaction_userId  + " = '" + this.UserId + "'";
+        String sql = "Select * from tb_m_transaction where " + TableConfig.TRANSACTION_TRANSID  + " = '" + this.UserId + "'";
 
         return db.executeQuery(sql);
     }
 
     public ResultSet getTransactionByUserFiltered(String filter) throws SQLException{
 
-        String sql = "Select * from tb_m_transaction where " + TableConfig._transaction_userId  + " = '" + this.UserId + "' and " + TableConfig._transaction_transType + " = '" + filter + "'";
+        String sql = "Select * from tb_m_transaction where " + TableConfig.TRANSACTION_USERID  + " = '" + this.UserId + "' and " + TableConfig.TRANSACTION_TRANSTYPE + " = '" + filter + "'";
 
         return db.executeQuery(sql);
 
@@ -48,7 +48,7 @@ public class Transaction {
 
     public boolean addTransaction() throws SQLException{
 
-        String sql = "Insert into tb_m_transaction(" + TableConfig._transaction_transType + ", " + TableConfig._transaction_totalTrans + ", " + TableConfig._transaction_userId + ", " + TableConfig._transaction_description + ") values ('" + TransType + "', '" + TotalTrans + "' , '" + UserId + "', '" + Description + "' )";
+        String sql = "Insert into tb_m_transaction(" + TableConfig.TRANSACTION_TRANSTYPE + ", " + TableConfig.TRANSACTION_TOTALTRANS + ", " + TableConfig.TRANSACTION_USERID + ", " + TableConfig.TRANSACTION_DESCRIPTION + ") values ('" + TransType + "', '" + TotalTrans + "' , '" + UserId + "', '" + Description + "' )";
         
         return db.execute(sql);
 

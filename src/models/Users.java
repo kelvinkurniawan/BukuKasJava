@@ -42,7 +42,7 @@ public class Users {
         
         boolean result;
         
-        String sql = "INSERT INTO tb_m_user ("+ TableConfig._user_name +", "+ TableConfig._user_email + ", "+ TableConfig._user_username +", "+ TableConfig._user_password +", "+ TableConfig._user_phone +") VALUES ('" + name + "', '" + email + "', '" + username + "', '" + password + "', '" + phone + "')";
+        String sql = "INSERT INTO tb_m_user ("+ TableConfig.USER_NAME +", "+ TableConfig.USER_EMAIL + ", "+ TableConfig.USER_USERNAME +", "+ TableConfig.USER_PASSWORD +", "+ TableConfig.USER_PHONE +") VALUES ('" + name + "', '" + email + "', '" + username + "', '" + password + "', '" + phone + "')";
     
         result =  db.execute(sql);
         
@@ -52,7 +52,7 @@ public class Users {
     
     public ResultSet getUserByUsername() throws SQLException{
         
-        String sql = "SELECT * FROM tb_m_user where "+ TableConfig._user_username + " = '" + username + "'";
+        String sql = "SELECT * FROM tb_m_user where "+ TableConfig.USER_NAME + " = '" + username + "'";
         
         rs = db.executeQuery(sql);
         
