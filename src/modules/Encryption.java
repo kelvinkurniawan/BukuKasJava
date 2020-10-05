@@ -10,6 +10,7 @@ package modules;
  * @author kelvi
  */
 public class Encryption {
+   
     
     public static String getEncrypt(String word){
     

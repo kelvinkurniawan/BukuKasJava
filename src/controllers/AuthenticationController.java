@@ -14,8 +14,6 @@ import modules.Encryption;
 import modules.DBConnection;
 import modules.Routing;
 import modules.SessionManager;
-import views.Login;
-import views.Register;
 /**
  *
  * @author kelvi
@@ -39,7 +37,7 @@ public class AuthenticationController {
               
               db.closeQuery();
               
-              new HomeController().displayHome();
+              new Routing().displayHome();
               
               return true;
               

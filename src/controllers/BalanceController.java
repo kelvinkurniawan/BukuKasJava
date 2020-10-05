@@ -23,10 +23,7 @@ public class BalanceController {
     public String id;
     public boolean isExist = false;
     
-    // Controller
     TransactionController tc = new TransactionController();
-    
-    // Model
     Balance balance = new Balance(SessionManager.userId);
     
     public int getBalance() throws SQLException{
