@@ -46,7 +46,7 @@ public class Balance {
     public boolean updateBalance(int newBalance) throws SQLException{
         boolean result;
         
-        String sql = "Update tb_m_balance set " + TableConfig.BALANCE_BALANCE + " = '" + newBalance + "' where " + TableConfig.BALANCE_BALANCEID + " = '" + this.Id + "'";
+        String sql = "Update tb_m_balance set " + TableConfig.BALANCE_BALANCE + " = '" + newBalance + "' where " + TableConfig.BALANCE_USERID + " = '" + this.Id + "'";
         
         result = db.execute(sql);
         

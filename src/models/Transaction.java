@@ -33,7 +33,7 @@ public class Transaction {
 
     public ResultSet getTransactionByUser() throws SQLException{
 
-        String sql = "Select * from tb_m_transaction where " + TableConfig.TRANSACTION_TRANSID  + " = '" + this.UserId + "'";
+        String sql = "Select * from tb_m_transaction where " + TableConfig.TRANSACTION_USERID  + " = '" + this.UserId + "'";
 
         return db.executeQuery(sql);
     }

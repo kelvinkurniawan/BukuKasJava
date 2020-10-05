@@ -52,7 +52,7 @@ public class Users {
     
     public ResultSet getUserByUsername() throws SQLException{
         
-        String sql = "SELECT * FROM tb_m_user where "+ TableConfig.USER_NAME + " = '" + username + "'";
+        String sql = "SELECT * FROM tb_m_user where "+ TableConfig.USER_USERNAME + " = '" + username + "'";
         
         rs = db.executeQuery(sql);
         
