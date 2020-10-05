@@ -13,8 +13,6 @@ import javax.swing.table.DefaultTableModel;
 import models.Transaction;
 import modules.DBConnection;
 import modules.SessionManager;
-import views.AddTransaction;
-import views.SetBalance;
 
 /**
  *
@@ -27,6 +25,26 @@ public class TransactionController {
     
     DBConnection db = new DBConnection();
     Transaction transaction = new Transaction(SessionManager.userId);
+    
+    public void addTransaction(int transTypeTemp, String totalTrans, String Description){
+        String transType;
+        
+        if(transTypeTemp == 0){
+            transType = "Income";
+        }else{
+            transType = "Outcome";
+        }
+        
+        transaction.TransType = transType;
+        transaction.TotalTrans = Integer.parseInt(totalTrans);
+        transaction.Description = Description;
+        
+        try {
+            transaction.addTransaction();
+        } catch (SQLException ex) {
+            Logger.getLogger(TransactionController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     public int getIncome(){
         

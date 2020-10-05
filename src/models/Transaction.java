@@ -18,15 +18,14 @@ import config.TableConfig;
  */
 public class Transaction {
    
-    public static ResultSet rs;
-    
-    private int TransId;
-    private String TransType;
-    private int TotalTrans;
-    private String Description;
-    private final int UserId;
-
     DBConnection db = new DBConnection();
+    
+    public static ResultSet rs;
+    public String Description;
+    public String TransType;
+    public int TransId;
+    public int TotalTrans;
+    public final int UserId;
 
     public Transaction(int UserId){
         this.UserId = UserId;
@@ -47,11 +46,11 @@ public class Transaction {
 
     }
 
-    public boolean addTransaction(){
+    public boolean addTransaction() throws SQLException{
 
-        String sql = "Insert into tb_m_transaction(" + TableConfig._transaction_transType + ", " + TableConfig._transaction_totalTrans + ", " + TableConfig._transaction_userId + ") values ('" + TransType + "', '" + TotalTrans + "' , '" + UserId + "' )";
-
-        return true;
+        String sql = "Insert into tb_m_transaction(" + TableConfig._transaction_transType + ", " + TableConfig._transaction_totalTrans + ", " + TableConfig._transaction_userId + ", " + TableConfig._transaction_description + ") values ('" + TransType + "', '" + TotalTrans + "' , '" + UserId + "', '" + Description + "' )";
+        
+        return db.execute(sql);
 
     }
 
