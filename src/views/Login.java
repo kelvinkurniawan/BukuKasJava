@@ -11,6 +11,7 @@ import controllers.HomeController;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modules.Routing;
 /**
  *
  * @author ASUS
@@ -201,6 +202,7 @@ public class Login extends javax.swing.JFrame {
             
             if(auth.login(jTextField1.getText(), jPasswordField1.getText())){
                 this.setVisible(false);
+                System.out.println("Logged In");
             }else{
                 System.out.println("Something went wrong!");
             }
@@ -213,8 +215,7 @@ public class Login extends javax.swing.JFrame {
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
-        this.setVisible(false);
-        new AuthenticationController().displayRegister();
+        new Routing().displayRegister();
     }//GEN-LAST:event_jLabel7MouseClicked
 
     /**

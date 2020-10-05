@@ -6,6 +6,7 @@
 package bukukas;
 
 import controllers.AuthenticationController;
+import modules.Routing;
 
 /**
  *
@@ -28,7 +29,7 @@ public class Main {
 //        
 //        db.closeQuery();
 
-        new AuthenticationController().displayLogin();
+        new Routing().displayLogin();
         
     }
     

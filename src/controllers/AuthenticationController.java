@@ -46,7 +46,7 @@ public class AuthenticationController {
               
               db.closeQuery();
               
-              new HomeController().displayHomeScreen();
+              new HomeController().displayHome();
               
               return true;
               

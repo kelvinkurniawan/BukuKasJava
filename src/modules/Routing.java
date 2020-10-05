@@ -33,19 +33,10 @@ public class Routing {
     }
     
     public void displayLogin(){
-        this.beforeDisplaying();
         login.setVisible(true);
     }
     
     public void displayRegister(){
         register.setVisible(true);
-    }
-    
-    public final void beforeDisplaying(){
-        home.setVisible(false);
-        addTransaction.setVisible(false);
-        setBalance.setVisible(false);
-        login.setVisible(false);
-        register.setVisible(false);
     }
 }

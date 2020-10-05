@@ -10,20 +10,24 @@ package controllers;
  * @author kelvi
  */
 
-import views.AddTransaction;
-import views.Home;
-import views.SetBalance;
+import modules.Routing;
 
-public class HomeController {
+public class HomeController extends Routing {
     
-    public void displayHomeScreen(){
-        new Home().setVisible(true);
+    Routing route = new Routing();
+    
+    @Override
+    public void displayHome(){
+        super.displayHome();
     }
-        public void displayAddTransaction(){
-        new AddTransaction().setVisible(true);
+        
+    @Override
+    public void displayAddTransaction(){
+        super.displayAddTransaction();
     }
     
+    @Override
     public void displaySetBalance(){
-        new SetBalance().setVisible(true);
+        super.displaySetBalance();
     }
 }
