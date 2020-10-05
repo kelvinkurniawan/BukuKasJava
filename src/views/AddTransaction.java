@@ -100,6 +100,7 @@ public class AddTransaction extends javax.swing.JFrame {
         btnSave.setBackground(new java.awt.Color(255, 255, 255));
         btnSave.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnSave.setText("Save");
+        btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveActionPerformed(evt);
@@ -110,6 +111,7 @@ public class AddTransaction extends javax.swing.JFrame {
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("Back");
+        btnBack.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
@@ -187,10 +189,15 @@ public class AddTransaction extends javax.swing.JFrame {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        if (jTextField1.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Please Fill the Amount!","Blank Amount", JOptionPane.ERROR_MESSAGE);
+            return;
+        }else{
         tc.addTransaction(comboxType.getSelectedIndex(), jTextField1.getText(), txtaDescription.getText());
         JOptionPane.showMessageDialog(this, "Saved!");
         this.setVisible(false);
         new Routing().displayHome();
+        }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     /**

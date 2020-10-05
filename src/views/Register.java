@@ -104,6 +104,7 @@ public class Register extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(67, 178, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jButton1.setText("Register");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -121,7 +122,7 @@ public class Register extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(51, 153, 255));
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon.png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/book.png"))); // NOI18N
 
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -133,33 +134,35 @@ public class Register extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(133, 133, 133)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
+                        .addGap(133, 133, 133)
+                        .addComponent(jLabel10))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(90, 90, 90)
                         .addComponent(jLabel9)))
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(216, 216, 216)
+                .addGap(211, 211, 211)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel10)
-                .addContainerGap(262, Short.MAX_VALUE))
+                .addContainerGap(265, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 650));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 650));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jLabel11.setText("have an account ?");
+        jLabel11.setText("Have an account ?");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 600, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 102, 102));
         jLabel12.setText("Login");
+        jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel12MouseClicked(evt);
@@ -203,10 +206,15 @@ public class Register extends javax.swing.JFrame {
         AuthenticationController auth = new AuthenticationController();
         
         try {
+            if (jTextField1.getText().equals("") || jTextField2.getText().equals("") || jTextField3.getText().equals("") || jTextField4.getText().equals("") || jPasswordField1.getText().equals("")) {
+                jOptionPane1.showMessageDialog(this,"Please fill the blank!");
+                return;
+            }else{
             auth.register(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jPasswordField1.getText());
             jOptionPane1.showMessageDialog(this, "Registed, please login!");        
             new Routing().displayLogin();
             this.setVisible(false);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
         }
