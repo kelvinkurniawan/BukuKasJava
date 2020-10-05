@@ -208,7 +208,8 @@ public class Register extends javax.swing.JFrame {
                         .addGap(26, 26, 26)
                         .addComponent(jLabel11)
                         .addGap(5, 5, 5)
-                        .addComponent(jLabel12))))
+                        .addComponent(jLabel12)))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
