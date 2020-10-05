@@ -5,51 +5,13 @@
  */
 package daos;
 
-import utils.modules.DBConnection;
-import utils.configs.TableConfig;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import models.Balance;
 
 /**
  *
  * @author kelvi
  */
-public class BalanceDao {
-    public static ResultSet rs;
-    private final int Id;
-    
-    DBConnection db = new DBConnection();
-    
-    public BalanceDao(int Id){
-        this.Id = Id;
-    }
-    
-    public ResultSet getBalanceById() throws SQLException{
-        String sql = "SELECT * from tb_m_balance where " + TableConfig.BALANCE_USERID + " =  '" + this.Id + "'";
-        
-        rs = db.executeQuery(sql);
-        
-        return rs;
-    }
-    
-    public boolean addBalance(int newBalance) throws SQLException{
-        
-        boolean result;
-        
-        String sql = "Insert into tb_m_balance(" + TableConfig.BALANCE_BALANCE + ", " + TableConfig.BALANCE_USERID + ") values ('" + newBalance + "', '" + this.Id + "')";
-        
-        result = db.execute(sql);
-        
-        return result;
-    }
-    
-    public boolean updateBalance(int newBalance) throws SQLException{
-        boolean result;
-        
-        String sql = "Update tb_m_balance set " + TableConfig.BALANCE_BALANCE + " = '" + newBalance + "' where " + TableConfig.BALANCE_USERID + " = '" + this.Id + "'";
-        
-        result = db.execute(sql);
-        
-        return result;
-    }
+public interface BalanceDao {
+    public Balance getBalanceByUserId(int UserId);
+    public boolean insert(Balance balance);
 }

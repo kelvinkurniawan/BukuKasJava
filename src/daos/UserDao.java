@@ -5,60 +5,13 @@
  */
 package daos;
 
-import utils.modules.DBConnection;
-import utils.configs.TableConfig;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import models.User;
 
 /**
  *
  * @author kelvi
  */
-public class UserDao {
-    public static ResultSet rs;
-    
-    private String name;
-    private String email;   
-    private String username;
-    private String password;
-    private String phone;
-    
-    DBConnection db = new DBConnection();
-    
-    public UserDao(String name, String email, String phone, String username, String password){
-        this.name = name;
-        this.email = email;
-        this.username = username;
-        this.password = password;
-        this.phone = phone;
-    }
-    
-    public UserDao(){
-        
-    }
-    
-    public boolean addUser() throws SQLException{
-        
-        boolean result;
-        
-        String sql = "INSERT INTO tb_m_user ("+ TableConfig.USER_NAME +", "+ TableConfig.USER_EMAIL + ", "+ TableConfig.USER_USERNAME +", "+ TableConfig.USER_PASSWORD +", "+ TableConfig.USER_PHONE +") VALUES ('" + name + "', '" + email + "', '" + username + "', '" + password + "', '" + phone + "')";
-    
-        result =  db.execute(sql);
-        
-        return result;
-    
-    }
-    
-    public ResultSet getUserByUsername() throws SQLException{
-        
-        String sql = "SELECT * FROM tb_m_user where "+ TableConfig.USER_USERNAME + " = '" + username + "'";
-        
-        rs = db.executeQuery(sql);
-        
-        return rs;
-        
-    }
-   
-
+public interface UserDao {
+    public boolean insert(User user);
+    public User getUserByUsername(String username);
 }

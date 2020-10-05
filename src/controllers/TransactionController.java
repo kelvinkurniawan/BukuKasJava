@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import daos.TransactionDao;
+import daos.TransactionImpl;
 import utils.modules.DBConnection;
 import utils.modules.SessionManager;
 
@@ -24,7 +24,7 @@ public class TransactionController {
     public ResultSet rs;
     
     DBConnection db = new DBConnection();
-    TransactionDao transaction = new TransactionDao(SessionManager.userId);
+    TransactionImpl transaction = new TransactionImpl(SessionManager.userId);
     
     public void addTransaction(int transTypeTemp, String totalTrans, String Description){
         String transType;

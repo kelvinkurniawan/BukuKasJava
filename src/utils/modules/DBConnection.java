@@ -5,13 +5,15 @@
  */
 package utils.modules;
 
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import utils.configs.DBConfig;
 
-import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,37 +26,21 @@ public class DBConnection {
     public static ResultSet rs;
     
     
-    public void intialize(){
-        try{
-            
-            Class.forName(DBConfig.JDBC_DRIVER);
+    private static Connection connection;
 
-            // buat koneksi ke database
-            conn = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.USER, DBConfig.PASS);
-            
-        }catch(ClassNotFoundException | SQLException e){
-            System.out.println(e);
+    public static Connection initialize() {
+        if (connection == null) {
+            try {
+                MysqlDataSource dataSource = new MysqlDataSource();
+                dataSource.setUser(DBConfig.USER);
+                dataSource.setPassword(DBConfig.PASS);
+                dataSource.setUrl(DBConfig.DB_URL);
+                connection = dataSource.getConnection();
+            } catch (SQLException ex) {
+                Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-    }
-    
-    public boolean execute(String sql) throws SQLException{   
-        
-        this.intialize();
-        
-        stmt = conn.createStatement();
-
-        return stmt.execute(sql);
-        
-    }
-    
-    public ResultSet executeQuery(String sql) throws SQLException{   
-        
-        this.intialize();
-        
-        stmt = conn.createStatement();
-
-        return stmt.executeQuery(sql);
-        
+        return connection;
     }
     
     public void closeQuery() throws SQLException{

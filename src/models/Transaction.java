@@ -17,6 +17,15 @@ public class Transaction {
     private String time;
     private int userId;
 
+    public Transaction(int transId, String transType, String description, int totalTrans, String time, int userId) {
+        this.transId = transId;
+        this.transType = transType;
+        this.description = description;
+        this.totalTrans = totalTrans;
+        this.time = time;
+        this.userId = userId;
+    }
+
     public int getTransId() {
         return transId;
     }

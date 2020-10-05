@@ -8,7 +8,7 @@ package controllers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import daos.UserDao;
+import daos.UserImpl;
 
 import utils.modules.Encryption;
 import utils.modules.DBConnection;
@@ -26,13 +26,13 @@ public class AuthenticationController {
     
     
     public boolean login(String username, String password) throws SQLException{
-        UserDao users = new UserDao(null, null, null, username, password);
+        //UserImpl users = new UserImpl(null, null, null, username, password);
         
         if(username.equals("") || password.equals("")){
             return false;
         }
         
-        rs = users.getUserByUsername();
+        //rs = users.getUserByUsername();
         
         if(rs.next()){
           if(Encryption.getDecrypt(rs.getString("password")).equals(password)){
@@ -59,9 +59,10 @@ public class AuthenticationController {
         if(name.equals("") ||username.equals("") || password.equals("") || email.equals("") || phone.equals("")){
             return false;
         }
-        UserDao users = new UserDao(name, email, phone,  username, Encryption.getEncrypt(password));
+       // UserImpl users = new UserImpl(name, email, phone,  username, Encryption.getEncrypt(password));
         
-        return users.addUser();
+        //return users.addUser();
+        return true;
     }
             
 }

@@ -11,6 +11,12 @@ package utils.configs;
  */
 public class TableConfig {
     
+    
+    // Table name
+    public static final String TBL_USER = "tb_m_user";    
+    public static final String TBL_BALANCE = "tb_m_balance";
+    public static final String TBL_TRANSACTION = "tb_m_transaction";
+    
     // Table user
     public static final String USER_NAME = "Name";
     public static final String USER_EMAIL = "Email";   
