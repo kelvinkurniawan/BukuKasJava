@@ -34,6 +34,7 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jOptionPane1 = new javax.swing.JOptionPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -202,9 +203,8 @@ public class Login extends javax.swing.JFrame {
             
             if(auth.login(jTextField1.getText(), jPasswordField1.getText())){
                 this.setVisible(false);
-                System.out.println("Logged In");
             }else{
-                System.out.println("Something went wrong!");
+                jOptionPane1.showMessageDialog(this, "Username or password is wrong!");
             }
             
         } catch (SQLException ex) {
@@ -215,6 +215,7 @@ public class Login extends javax.swing.JFrame {
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
+        this.setVisible(false);
         new Routing().displayRegister();
     }//GEN-LAST:event_jLabel7MouseClicked
 
@@ -262,6 +263,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPasswordField jPasswordField1;

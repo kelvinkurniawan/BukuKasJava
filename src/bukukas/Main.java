@@ -5,8 +5,8 @@
  */
 package bukukas;
 
-import controllers.AuthenticationController;
 import modules.Routing;
+import modules.SessionManager;
 
 /**
  *
@@ -17,18 +17,6 @@ public class Main {
     
     public static void main(String[] args) {
         
-//        DBConnection db = new DBConnection();
-//        
-//        rs = db.executeQuery("SELECT * from users");
-//        
-//        while(rs.next()){
-//            System.out.println("User ID: " + rs.getInt("UserId"));
-//            System.out.println("Nama: " + rs.getString("name"));
-//            System.out.println("Email: " + rs.getString("email"));
-//        }
-//        
-//        db.closeQuery();
-
         new Routing().displayLogin();
         
     }

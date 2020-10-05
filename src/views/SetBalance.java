@@ -44,6 +44,7 @@ public class SetBalance extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jOptionPane1 = new javax.swing.JOptionPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -163,6 +164,7 @@ public class SetBalance extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             bc.setBalance(txtSaldoAwal.getText());
+            jOptionPane1.showMessageDialog(this, "Saved!");
             this.setVisible(false);
             new Home().setVisible(true);
         } catch (SQLException ex) {
@@ -213,6 +215,7 @@ public class SetBalance extends javax.swing.JFrame {
     private javax.swing.JButton btnSave;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txtSaldoAwal;

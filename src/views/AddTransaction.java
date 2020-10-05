@@ -7,6 +7,8 @@ package views;
 
 import controllers.HomeController;
 import controllers.TransactionController;
+import javax.swing.JOptionPane;
+import modules.Routing;
 
 /**
  *
@@ -32,6 +34,7 @@ public class AddTransaction extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jOptionPane1 = new javax.swing.JOptionPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -181,6 +184,9 @@ public class AddTransaction extends javax.swing.JFrame {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         tc.addTransaction(comboxType.getSelectedIndex(), jTextField1.getText(), txtaDescription.getText());
+        JOptionPane.showMessageDialog(this, "Saved!");
+        this.setVisible(false);
+        new Routing().displayHome();
     }//GEN-LAST:event_btnSaveActionPerformed
 
     /**
@@ -229,6 +235,7 @@ public class AddTransaction extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

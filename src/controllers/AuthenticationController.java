@@ -12,6 +12,7 @@ import models.Users;
 
 import modules.Encryption;
 import modules.DBConnection;
+import modules.Routing;
 import modules.SessionManager;
 import views.Login;
 import views.Register;
@@ -24,14 +25,6 @@ public class AuthenticationController {
     public static ResultSet rs;
     
     DBConnection db = new DBConnection();
-    
-    public void displayLogin(){
-        new Login().setVisible(true);
-    }
-    
-    public void displayRegister(){
-        new Register().setVisible(true);
-    }
     
     public boolean login(String username, String password) throws SQLException{
         Users users = new Users(null, null, null, username, password);
@@ -61,9 +54,8 @@ public class AuthenticationController {
     
     public boolean register(String name, String email, String phone, String username, String password) throws SQLException{
         Users users = new Users(name, email, phone,  username, Encryption.getEncrypt(password));
-        new AuthenticationController().displayLogin();
         
-        return users.addUser(); // set alert
+        return users.addUser();
     }
             
 }
