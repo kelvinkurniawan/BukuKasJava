@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modules;
+package utils.modules;
 
-import config.DBConfig;
+import utils.configs.DBConfig;
 
 import java.sql.DriverManager;
 import java.sql.Connection;

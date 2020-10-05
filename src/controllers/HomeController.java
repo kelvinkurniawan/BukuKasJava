@@ -10,7 +10,7 @@ package controllers;
  * @author kelvi
  */
 
-import modules.Routing;
+import utils.modules.Routing;
 
 public class HomeController extends Routing {
     

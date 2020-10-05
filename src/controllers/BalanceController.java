@@ -9,8 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import models.Balance;
-import modules.SessionManager;
+import daos.BalanceDao;
+import utils.modules.SessionManager;
 
 /**
  *
@@ -24,7 +24,7 @@ public class BalanceController {
     public boolean isExist = false;
     
     TransactionController tc = new TransactionController();
-    Balance balance = new Balance(SessionManager.userId);
+    BalanceDao balance = new BalanceDao(SessionManager.userId);
     
     public int getBalance() throws SQLException{
         

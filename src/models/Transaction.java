@@ -1,57 +1,68 @@
-package models;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import modules.DBConnection;
-import config.TableConfig;
+package models;
 
 /**
  *
  * @author kelvi
  */
 public class Transaction {
-   
-    DBConnection db = new DBConnection();
+    private int transId;
+    private String transType;
+    private String description;
+    private int totalTrans;
+    private String time;
+    private int userId;
+
+    public int getTransId() {
+        return transId;
+    }
+
+    public void setTransId(int transId) {
+        this.transId = transId;
+    }
+
+    public String getTransType() {
+        return transType;
+    }
+
+    public void setTransType(String transType) {
+        this.transType = transType;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getTotalTrans() {
+        return totalTrans;
+    }
+
+    public void setTotalTrans(int totalTrans) {
+        this.totalTrans = totalTrans;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
     
-    public static ResultSet rs;
-    public String Description;
-    public String TransType;
-    public int TransId;
-    public int TotalTrans;
-    public final int UserId;
-
-    public Transaction(int UserId){
-        this.UserId = UserId;
-    }
-
-    public ResultSet getTransactionByUser() throws SQLException{
-
-        String sql = "Select * from tb_m_transaction where " + TableConfig.TRANSACTION_USERID  + " = '" + this.UserId + "'";
-
-        return db.executeQuery(sql);
-    }
-
-    public ResultSet getTransactionByUserFiltered(String filter) throws SQLException{
-
-        String sql = "Select * from tb_m_transaction where " + TableConfig.TRANSACTION_USERID  + " = '" + this.UserId + "' and " + TableConfig.TRANSACTION_TRANSTYPE + " = '" + filter + "'";
-
-        return db.executeQuery(sql);
-
-    }
-
-    public boolean addTransaction() throws SQLException{
-
-        String sql = "Insert into tb_m_transaction(" + TableConfig.TRANSACTION_TRANSTYPE + ", " + TableConfig.TRANSACTION_TOTALTRANS + ", " + TableConfig.TRANSACTION_USERID + ", " + TableConfig.TRANSACTION_DESCRIPTION + ") values ('" + TransType + "', '" + TotalTrans + "' , '" + UserId + "', '" + Description + "' )";
-        
-        return db.execute(sql);
-
-    }
-
 }

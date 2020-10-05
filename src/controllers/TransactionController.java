@@ -10,9 +10,9 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import models.Transaction;
-import modules.DBConnection;
-import modules.SessionManager;
+import daos.TransactionDao;
+import utils.modules.DBConnection;
+import utils.modules.SessionManager;
 
 /**
  *
@@ -24,7 +24,7 @@ public class TransactionController {
     public ResultSet rs;
     
     DBConnection db = new DBConnection();
-    Transaction transaction = new Transaction(SessionManager.userId);
+    TransactionDao transaction = new TransactionDao(SessionManager.userId);
     
     public void addTransaction(int transTypeTemp, String totalTrans, String Description){
         String transType;

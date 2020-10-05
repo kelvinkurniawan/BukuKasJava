@@ -8,12 +8,12 @@ package controllers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import models.Users;
+import daos.UserDao;
 
-import modules.Encryption;
-import modules.DBConnection;
-import modules.Routing;
-import modules.SessionManager;
+import utils.modules.Encryption;
+import utils.modules.DBConnection;
+import utils.modules.Routing;
+import utils.modules.SessionManager;
 /**
  *
  * @author kelvi
@@ -26,7 +26,7 @@ public class AuthenticationController {
     
     
     public boolean login(String username, String password) throws SQLException{
-        Users users = new Users(null, null, null, username, password);
+        UserDao users = new UserDao(null, null, null, username, password);
         
         if(username.equals("") || password.equals("")){
             return false;
@@ -59,7 +59,7 @@ public class AuthenticationController {
         if(name.equals("") ||username.equals("") || password.equals("") || email.equals("") || phone.equals("")){
             return false;
         }
-        Users users = new Users(name, email, phone,  username, Encryption.getEncrypt(password));
+        UserDao users = new UserDao(name, email, phone,  username, Encryption.getEncrypt(password));
         
         return users.addUser();
     }

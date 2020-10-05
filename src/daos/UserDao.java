@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package models;
+package daos;
 
-import modules.DBConnection;
-import config.TableConfig;
+import utils.modules.DBConnection;
+import utils.configs.TableConfig;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +15,7 @@ import java.sql.SQLException;
  *
  * @author kelvi
  */
-public class Users {
+public class UserDao {
     public static ResultSet rs;
     
     private String name;
@@ -26,7 +26,7 @@ public class Users {
     
     DBConnection db = new DBConnection();
     
-    public Users(String name, String email, String phone, String username, String password){
+    public UserDao(String name, String email, String phone, String username, String password){
         this.name = name;
         this.email = email;
         this.username = username;
@@ -34,7 +34,7 @@ public class Users {
         this.phone = phone;
     }
     
-    public Users(){
+    public UserDao(){
         
     }
     

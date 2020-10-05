@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package config;
+package utils.configs;
 
 /**
  *
@@ -17,7 +17,6 @@ public class TableConfig {
     public static final String USER_USERNAME = "Username";
     public static final String USER_PASSWORD = "Password";
     public static final String USER_PHONE = "Telephone";
-    
     
     // Table balance
     public static final String BALANCE_BALANCEID = "BalanceId";
