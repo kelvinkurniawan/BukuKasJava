@@ -5,6 +5,7 @@
  */
 package daos;
 
+import java.util.List;
 import models.Transaction;
 
 /**
@@ -13,8 +14,8 @@ import models.Transaction;
  */
 public interface TransactionDao {
     
-    public Transaction getTransactionByUserId(int UserId);
-    public Transaction getTransactionByUserIdFiltered(int UserId, String Filter);
+    public List<Transaction> getTransactionByUserId(int UserId);
+    public List<Transaction> getTransactionByUserIdFiltered(int UserId, String Filter);
     public boolean insert(Transaction transaction);
     
 }

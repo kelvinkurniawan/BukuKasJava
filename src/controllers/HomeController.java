@@ -5,6 +5,8 @@
  */
 package controllers;
 
+import utils.modules.Routing;
+
 /**
  *
  * @author kelvi
@@ -12,22 +14,19 @@ package controllers;
 
 import utils.modules.Routing;
 
-public class HomeController extends Routing {
+public class HomeController {
     
     Routing route = new Routing();
     
-    @Override
     public void displayHome(){
-        super.displayHome();
+        Routing.displayHome();
     }
         
-    @Override
     public void displayAddTransaction(){
-        super.displayAddTransaction();
+        Routing.displayAddTransaction();
     }
     
-    @Override
     public void displaySetBalance(){
-        super.displaySetBalance();
+        Routing.displaySetBalance();
     }
 }

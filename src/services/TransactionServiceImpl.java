@@ -6,6 +6,7 @@
 package services;
 
 import daos.TransactionDao;
+import java.util.List;
 import models.Transaction;
 
 /**
@@ -21,12 +22,12 @@ public class TransactionServiceImpl implements TransactionService{
     }
 
     @Override
-    public Transaction getTransactionByUserId(int UserId) {
+    public List<Transaction> getTransactionByUserId(int UserId) {
         return transactionDao.getTransactionByUserId(UserId);
     }
 
     @Override
-    public Transaction getTransactionByUserIdFiltered(int UserId, String Filter) {
+    public List<Transaction> getTransactionByUserIdFiltered(int UserId, String Filter) {
         return transactionDao.getTransactionByUserIdFiltered(UserId, Filter);
     }
 

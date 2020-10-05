@@ -28,7 +28,7 @@ public class DBConnection {
     
     private static Connection connection;
 
-    public static Connection initialize() {
+    public static Connection connect() {
         if (connection == null) {
             try {
                 MysqlDataSource dataSource = new MysqlDataSource();
@@ -41,13 +41,6 @@ public class DBConnection {
             }
         }
         return connection;
-    }
-    
-    public void closeQuery() throws SQLException{
-        
-        stmt.close();
-        conn.close();
-        
     }
     
 }

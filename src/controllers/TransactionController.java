@@ -24,7 +24,7 @@ public class TransactionController {
     public ResultSet rs;
     
     DBConnection db = new DBConnection();
-    TransactionImpl transaction = new TransactionImpl(SessionManager.userId);
+    //TransactionImpl transaction = new TransactionImpl(SessionManager.userId);
     
     public void addTransaction(int transTypeTemp, String totalTrans, String Description){
         String transType;
@@ -34,16 +34,11 @@ public class TransactionController {
         }else{
             transType = "Outcome";
         }
+        //  transaction.TransType = transType;
+        //  transaction.TotalTrans = Integer.parseInt(totalTrans);
+        //  transaction.Description = Description;
+        //   transaction.addTransaction();
         
-        transaction.TransType = transType;
-        transaction.TotalTrans = Integer.parseInt(totalTrans);
-        transaction.Description = Description;
-        
-        try {
-            transaction.addTransaction();
-        } catch (SQLException ex) {
-            Logger.getLogger(TransactionController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
     
     public int getIncome(){
@@ -51,7 +46,7 @@ public class TransactionController {
         int result = 0;
         
         try {
-            rs = transaction.getTransactionByUserFiltered("Income");
+           // rs = transaction.getTransactionByUserFiltered("Income");
             
             while(rs.next()){
                 result += rs.getInt("TotalTrans");
@@ -67,7 +62,7 @@ public class TransactionController {
         int result = 0;
         
         try {
-            rs = transaction.getTransactionByUserFiltered("Outcome");
+           // rs = transaction.getTransactionByUserFiltered("Outcome");
             
             while(rs.next()){
                 result += rs.getInt("TotalTrans");
@@ -86,7 +81,7 @@ public class TransactionController {
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
         try {
 
-            rs = transaction.getTransactionByUser();
+          //  rs = transaction.getTransactionByUser();
             
             while(rs.next()){
                 
@@ -99,7 +94,7 @@ public class TransactionController {
                 tableModel.addRow(data);
             }
           
-            db.closeQuery();
+          //  db.closeQuery();
 
         } catch (SQLException ex) {
            // Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);

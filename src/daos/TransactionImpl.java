@@ -11,11 +11,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import models.Transaction;
-import utils.modules.DBConnection;
-import utils.configs.TableConfig;
 import utils.modules.Query;
 
 /**
@@ -31,7 +31,9 @@ public class TransactionImpl implements TransactionDao{
     }
 
     @Override
-    public Transaction getTransactionByUserId(int UserId) {
+    public List<Transaction> getTransactionByUserId(int UserId) {
+        
+        List<Transaction> transactions = new ArrayList<>();
         PreparedStatement prepareStatement = null;
         ResultSet executeQuery = null;
         Transaction transaction = null;
@@ -43,6 +45,7 @@ public class TransactionImpl implements TransactionDao{
             if (executeQuery.next()) {
                 System.out.println(""+Query.QUERY_SELECT_TRANSACTION_BY_USER_ID);
                 transaction = new Transaction(executeQuery.getInt("TransId"), executeQuery.getString("TransType"), executeQuery.getString("Description"), executeQuery.getInt("TotalTrans"), executeQuery.getString("Time"), executeQuery.getInt("UserId"));
+                transactions.add(transaction);
             }
         } catch (SQLException ex) {
             Logger.getLogger(TransactionImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -61,13 +64,14 @@ public class TransactionImpl implements TransactionDao{
 
         }
         
-        return transaction;
+        return transactions;
         
     }
 
     @Override
-    public Transaction getTransactionByUserIdFiltered(int UserId, String Filter) {
+    public List<Transaction> getTransactionByUserIdFiltered(int UserId, String Filter) {
                 
+        List<Transaction> transactions = new ArrayList<>();
         PreparedStatement prepareStatement = null;
         ResultSet executeQuery = null;
         Transaction transaction = null;
@@ -80,6 +84,7 @@ public class TransactionImpl implements TransactionDao{
             if (executeQuery.next()) {
                 System.out.println(""+Query.QUERY_SELECT_TRANSACTION_BY_USER_ID_FILTERED);
                 transaction = new Transaction(executeQuery.getInt("TransId"), executeQuery.getString("TransType"), executeQuery.getString("Description"), executeQuery.getInt("TotalTrans"), executeQuery.getString("Time"), executeQuery.getInt("UserId"));
+                transactions.add(transaction);
             }
         } catch (SQLException ex) {
             Logger.getLogger(TransactionImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -98,7 +103,7 @@ public class TransactionImpl implements TransactionDao{
 
         }
         
-        return transaction;
+        return transactions;
         
     }
 

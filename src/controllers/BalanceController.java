@@ -24,11 +24,11 @@ public class BalanceController {
     public boolean isExist = false;
     
     TransactionController tc = new TransactionController();
-    BalanceImpl balance = new BalanceImpl(SessionManager.userId);
+    //BalanceImpl balance = new BalanceImpl(SessionManager.userId);
     
     public int getBalance() throws SQLException{
         
-        rs = balance.getBalanceById();
+       // rs = balance.getBalanceById();
         if(rs.next()){
             isExist = true;
             return rs.getInt("balance");
@@ -51,10 +51,10 @@ public class BalanceController {
     
     public boolean setBalance(String newBalance) throws SQLException{
         if(isExist){
-            balance.updateBalance(Integer.parseInt(newBalance));
+            //balance.updateBalance(Integer.parseInt(newBalance));
             return true;
         }else{
-            balance.addBalance(Integer.parseInt(newBalance));
+           // balance.addBalance(Integer.parseInt(newBalance));
             return true;
         }
     }

@@ -5,7 +5,6 @@
  */
 package bukukas;
 
-import utils.modules.Encryption;
 import utils.modules.Routing;
 
 /**
@@ -17,7 +16,7 @@ public class Main {
     
     public static void main(String[] args) {
         
-        new Routing().displayLogin();
+        Routing.displayLogin();
         
     }
     

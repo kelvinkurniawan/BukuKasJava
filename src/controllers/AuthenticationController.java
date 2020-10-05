@@ -21,9 +21,7 @@ import utils.modules.SessionManager;
 public class AuthenticationController {
     
     public static ResultSet rs;
-    
-    DBConnection db = new DBConnection();
-    
+ 
     
     public boolean login(String username, String password) throws SQLException{
         //UserImpl users = new UserImpl(null, null, null, username, password);
@@ -39,8 +37,6 @@ public class AuthenticationController {
               
               SessionManager.userId = rs.getInt("UserId");
               SessionManager.name = rs.getString("name");
-              
-              db.closeQuery();
               
               new Routing().displayHome();
               
