@@ -193,10 +193,10 @@ public class AddTransaction extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please Fill the Amount!","Blank Amount", JOptionPane.ERROR_MESSAGE);
             return;
         }else{
-        tc.addTransaction(comboxType.getSelectedIndex(), jTextField1.getText(), txtaDescription.getText());
-        JOptionPane.showMessageDialog(this, "Saved!");
-        this.setVisible(false);
-        new Routing().displayHome();
+            tc.addTransaction(comboxType.getSelectedIndex(), jTextField1.getText(), txtaDescription.getText());
+            JOptionPane.showMessageDialog(this, "Saved!");
+            this.setVisible(false);
+            new Routing().displayHome();
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 

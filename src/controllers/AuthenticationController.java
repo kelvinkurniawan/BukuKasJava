@@ -24,8 +24,13 @@ public class AuthenticationController {
     
     DBConnection db = new DBConnection();
     
+    
     public boolean login(String username, String password) throws SQLException{
         Users users = new Users(null, null, null, username, password);
+        
+        if(username.equals("") || password.equals("")){
+            return false;
+        }
         
         rs = users.getUserByUsername();
         
@@ -50,7 +55,10 @@ public class AuthenticationController {
         
     }
     
-    public boolean register(String name, String email, String phone, String username, String password) throws SQLException{
+    public boolean register(String name, String email, String phone, String username, String password) throws SQLException{       
+        if(name.equals("") ||username.equals("") || password.equals("") || email.equals("") || phone.equals("")){
+            return false;
+        }
         Users users = new Users(name, email, phone,  username, Encryption.getEncrypt(password));
         
         return users.addUser();
