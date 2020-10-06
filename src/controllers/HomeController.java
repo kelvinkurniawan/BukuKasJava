@@ -5,29 +5,68 @@
  */
 package controllers;
 
+import javax.swing.table.DefaultTableModel;
+import services.TransactionService;
+import services.TransactionServiceImpl;
+import utils.modules.JdbcUtils;
+import utils.modules.SessionManager;
+
 /**
  *
  * @author kelvi
  */
-
-import utils.modules.Routing;
-
-public class HomeController extends Routing {
+public class HomeController {
     
-    Routing route = new Routing();
+    TransactionService transactionService; 
+    BalanceController balanceController = new BalanceController();
+    TransactionController transactionController = new TransactionController();
     
-    @Override
-    public void displayHome(){
-        super.displayHome();
+    int userId;
+    
+    public HomeController(){
+        this.transactionService = new TransactionServiceImpl(JdbcUtils.getTransactionDao());
+        this.userId = SessionManager.userId;
     }
+    
+    public int getBalance(){
+        return balanceController.getBalance();
+    }
+    
+    public int getIncome(){
+        return transactionController.getIncome();
+    }
+    
+    public int getOutcome(){
+        return transactionController.getOutcome();
+    }
+    
+    public boolean checkUserBalance(){
+        return balanceController.checkUserBalance();
+    }
+
+    public int getCurrentlyBalance(){
+        return this.getBalance() + this.getIncome() - this.getOutcome();
+    }
+    
+    public final DefaultTableModel generateTableModel(){
+
+        int id = SessionManager.userId;
         
-    @Override
-    public void displayAddTransaction(){
-        super.displayAddTransaction();
+        String[] columnNames = {"Tipe", "Nominal", "Keterangan", "Tanggal"};
+        DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
+
+        transactionService.getTransactionByUserId(userId).stream().map((transactionByUserId) -> {
+            String type = transactionByUserId.getTransType();
+            int nominal = transactionByUserId.getTotalTrans();
+            String desc = transactionByUserId.getDescription();
+            String time = transactionByUserId.getTime();
+            Object[] data = {type, nominal, desc, time};
+            return data;
+        }).forEachOrdered((data) -> {
+            tableModel.addRow(data);
+        });
+        
+        return tableModel;
     }
     
-    @Override
-    public void displaySetBalance(){
-        super.displaySetBalance();
-    }
 }

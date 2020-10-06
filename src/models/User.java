@@ -5,23 +5,39 @@
  */
 package models;
 
+import services.UserService;
+
 /**
  *
  * @author kelvi
  */
 public class User {
-    private String userId;
+    private int userId;
     private String name;
     private String email;   
     private String username;
     private String password;
     private String phone;
 
-    public String getUserId() {
+    public User(int userId, String name, String email, String username, String password, String phone) {
+        this.userId = userId;
+        this.name = name;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.phone = phone;
+    }
+
+    public User(UserService userServiceImpl) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 

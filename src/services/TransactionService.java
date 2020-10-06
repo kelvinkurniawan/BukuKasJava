@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package daos;
+package services;
 
 import java.util.List;
 import models.Transaction;
@@ -12,10 +12,8 @@ import models.Transaction;
  *
  * @author kelvi
  */
-public interface TransactionDao {
-    
+public interface TransactionService {
     public List<Transaction> getTransactionByUserId(int UserId);
     public List<Transaction> getTransactionByUserIdFiltered(int UserId, String Filter);
     public boolean insert(Transaction transaction);
-    
 }

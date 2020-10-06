@@ -3,21 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bukukas;
 
-import utils.modules.Encryption;
-import utils.modules.Routing;
+
+import utils.modules.PrintPDF;
+import views.Login;
 
 /**
  *
  * @author kelvi
  */
-public class Main {
+public class App {
   
     
     public static void main(String[] args) {
         
-        new Routing().displayLogin();
+        PrintPDF pdf = new PrintPDF();
+        
+        new Login().setVisible(true);
         
     }
     

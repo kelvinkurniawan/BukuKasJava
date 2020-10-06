@@ -3,15 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package daos;
+package services;
 
-import models.Balance;
+import models.User;
 
 /**
  *
  * @author kelvi
  */
-public interface BalanceDao {
-    public Balance getBalanceByUserId(int UserId);
-    public boolean insert(Balance balance);
+public interface UserService {
+    
+    public User getUserByUsername(String username);
+    public boolean insert(User user);
+    
 }

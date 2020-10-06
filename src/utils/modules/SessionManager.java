@@ -13,5 +13,6 @@ public class SessionManager {
     
     public static int userId;
     public static String name;
+    public static boolean isLogin = false;
     
 }

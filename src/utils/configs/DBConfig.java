@@ -11,8 +11,9 @@ package utils.configs;
  */
 public class DBConfig {
     
-    public static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    public static final String DB_URL = "jdbc:mysql://localhost/bukukas";
+    public static final String SERVER = "localhost";
+    public static final int PORT = 3306;
+    public static final String DB_NAME = "bukukas";
     public static final String USER = "root";
     public static final String PASS = "";
     

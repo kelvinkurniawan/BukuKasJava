@@ -13,30 +13,20 @@ import views.*;
  */
 public class Routing {
     
-    Home home = new Home();
-    AddTransaction addTransaction = new AddTransaction();
-    SetBalance setBalance = new SetBalance();
+    private final Home HOME_VIEW = new Home();
+    private final AddTransaction ADD_TRANSACTION_VIEW = new AddTransaction();
+    private final SetBalance SET_BALANCE_VIEW = new SetBalance();
     
-    Login login = new Login();
-    Register register = new Register();
-    
-    public void displayHome(){
-        home.setVisible(true);
+    public Home homeView(){
+        return HOME_VIEW;
     }
     
-    public void displayAddTransaction(){
-        addTransaction.setVisible(true);
+    public AddTransaction addTrasaction(){
+        return ADD_TRANSACTION_VIEW;
     }
     
-    public void displaySetBalance(){
-        setBalance.setVisible(true);
+    public SetBalance setBalance(){
+        return SET_BALANCE_VIEW;
     }
     
-    public void displayLogin(){
-        login.setVisible(true);
-    }
-    
-    public void displayRegister(){
-        register.setVisible(true);
-    }
 }

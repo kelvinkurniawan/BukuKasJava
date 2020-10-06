@@ -5,13 +5,15 @@
  */
 package utils.modules;
 
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import utils.configs.DBConfig;
 
-import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,44 +26,27 @@ public class DBConnection {
     public static ResultSet rs;
     
     
-    public void intialize(){
-        try{
-            
-            Class.forName(DBConfig.JDBC_DRIVER);
-
-            // buat koneksi ke database
-            conn = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.USER, DBConfig.PASS);
-            
-        }catch(ClassNotFoundException | SQLException e){
-            System.out.println(e);
+    private static Connection connection;
+    
+    /**
+     * fungsi untuk membuat koneksi
+     * @return connection
+     */
+    public static Connection connect() {
+        if (connection == null) {
+            try {
+                MysqlDataSource dataSource = new MysqlDataSource();
+                dataSource.setServerName(DBConfig.SERVER);
+                dataSource.setPort(DBConfig.PORT);
+                dataSource.setDatabaseName(DBConfig.DB_NAME);
+                dataSource.setUser(DBConfig.USER);
+                dataSource.setPassword(DBConfig.PASS);
+                connection = dataSource.getConnection();
+            } catch (SQLException ex) {
+                Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-    }
-    
-    public boolean execute(String sql) throws SQLException{   
-        
-        this.intialize();
-        
-        stmt = conn.createStatement();
-
-        return stmt.execute(sql);
-        
-    }
-    
-    public ResultSet executeQuery(String sql) throws SQLException{   
-        
-        this.intialize();
-        
-        stmt = conn.createStatement();
-
-        return stmt.executeQuery(sql);
-        
-    }
-    
-    public void closeQuery() throws SQLException{
-        
-        stmt.close();
-        conn.close();
-        
+        return connection;
     }
     
 }

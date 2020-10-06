@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package daos;
+package services;
 
 import models.Balance;
 
@@ -11,7 +11,7 @@ import models.Balance;
  *
  * @author kelvi
  */
-public interface BalanceDao {
+public interface BalanceService {    
     public Balance getBalanceByUserId(int UserId);
     public boolean insert(Balance balance);
 }
