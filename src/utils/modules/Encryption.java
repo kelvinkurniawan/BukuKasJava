@@ -17,6 +17,10 @@ import java.security.spec.InvalidKeySpecException;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
+/**
+ * fungsi Encryption password
+ * @author kelvi
+ */
 public class Encryption {
 
     public static boolean validatePassword(String originalPassword, String storedPassword) throws NoSuchAlgorithmException, InvalidKeySpecException {
@@ -39,7 +43,7 @@ public class Encryption {
 
         return diff == 0;
     }
-
+    
     public static String generateStorngPasswordHash(String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
         int iterations = 1000;
         char[] chars = password.toCharArray();

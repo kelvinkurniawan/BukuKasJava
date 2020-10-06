@@ -6,7 +6,7 @@
 package utils.configs;
 
 /**
- *
+ * fungsi menyambungkan ke mysql
  * @author kelvi
  */
 public class DBConfig {

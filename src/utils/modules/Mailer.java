@@ -17,7 +17,7 @@ import javax.mail.internet.MimeMessage;
 import models.User;
 
 /**
- *
+ * fungsi untuk send email
  * @author kelvi
  */
 public class Mailer {

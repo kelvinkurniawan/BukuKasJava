@@ -6,7 +6,7 @@
 package utils.modules;
 
 /**
- *
+ * fungsi Session
  * @author kelvi
  */
 public class SessionManager {

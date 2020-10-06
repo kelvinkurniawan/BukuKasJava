@@ -21,7 +21,7 @@ import services.TransactionService;
 import services.TransactionServiceImpl;
 
 /**
- *
+ * fungsi untuk print PDF
  * @author kelvi
  */
 public class PrintPDF {

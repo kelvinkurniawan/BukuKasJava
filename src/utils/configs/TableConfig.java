@@ -6,7 +6,7 @@
 package utils.configs;
 
 /**
- *
+ * name variable from attribute table
  * @author kelvi
  */
 public class TableConfig {
