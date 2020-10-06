@@ -5,63 +5,64 @@
  */
 package controllers;
 
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import daos.UserDao;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import models.User;
+import services.UserService;
+import services.UserServiceImpl;
+import utils.modules.BCrypt;
 
 import utils.modules.Encryption;
-import utils.modules.DBConnection;
-import utils.modules.Routing;
+import utils.modules.JdbcUtils;
+import utils.modules.Mailer;
 import utils.modules.SessionManager;
+import views.Home;
+
 /**
  *
  * @author kelvi
  */
 public class AuthenticationController {
-    
-    public static ResultSet rs;
-    
-    DBConnection db = new DBConnection();
-    
-    
-    public boolean login(String username, String password) throws SQLException{
-        UserDao users = new UserDao(null, null, null, username, password);
-        
-        if(username.equals("") || password.equals("")){
-            return false;
-        }
-        
-        rs = users.getUserByUsername();
-        
-        if(rs.next()){
-          if(Encryption.getDecrypt(rs.getString("password")).equals(password)){
-              
-              SessionManager.userId = rs.getInt("UserId");
-              SessionManager.name = rs.getString("name");
-              
-              db.closeQuery();
-              
-              new Routing().displayHome();
-              
-              return true;
-              
-          }else{
-              return false;
-          }
-        }else{
-            return false;
-        }
-        
+
+    UserService userService;
+
+    public AuthenticationController() {
+        userService = new UserServiceImpl(JdbcUtils.getUserDao());
     }
-    
-    public boolean register(String name, String email, String phone, String username, String password) throws SQLException{       
-        if(name.equals("") ||username.equals("") || password.equals("") || email.equals("") || phone.equals("")){
+
+    public boolean login(String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException  {
+
+        if (userService.getUserByUsername(username) != null) {
+            if (BCrypt.checkpw(password, userService.getUserByUsername(username).getPassword())) {
+
+                System.out.println(SessionManager.userId);
+
+                SessionManager.userId = userService.getUserByUsername(username).getUserId();
+                SessionManager.name = userService.getUserByUsername(username).getName();
+
+                new Home().setVisible(true);
+
+                return true;
+            } else {
+                return false;
+            }
+        } else {
             return false;
         }
-        UserDao users = new UserDao(name, email, phone,  username, Encryption.getEncrypt(password));
-        
-        return users.addUser();
+
     }
-            
+
+    public boolean register(String name, String email, String phone, String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
+
+        User user = new User(0, name, email, username, BCrypt.hashpw(password, BCrypt.gensalt(12)), phone);
+
+        if(userService.insert(user)){
+            Mailer.sendMail(email, user);
+            return true;
+        }
+        
+        return false;
+
+    }
+
 }

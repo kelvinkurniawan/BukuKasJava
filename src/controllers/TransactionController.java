@@ -5,13 +5,10 @@
  */
 package controllers;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
-import daos.TransactionDao;
-import utils.modules.DBConnection;
+import models.Transaction;
+import services.TransactionService;
+import services.TransactionServiceImpl;
+import utils.modules.JdbcUtils;
 import utils.modules.SessionManager;
 
 /**
@@ -19,14 +16,16 @@ import utils.modules.SessionManager;
  * @author kelvi
  */
 public class TransactionController {
-
-    public String userId;
-    public ResultSet rs;
     
-    DBConnection db = new DBConnection();
-    TransactionDao transaction = new TransactionDao(SessionManager.userId);
+    TransactionService transactionService; 
+    int userId;
     
-    public void addTransaction(int transTypeTemp, String totalTrans, String Description){
+    public TransactionController(){
+        this.transactionService = new TransactionServiceImpl(JdbcUtils.getTransactionDao());
+        this.userId = SessionManager.userId;
+    }
+    
+    public boolean addTransaction(int transTypeTemp, String totalTrans, String Description){
         String transType;
         
         if(transTypeTemp == 0){
@@ -35,78 +34,31 @@ public class TransactionController {
             transType = "Outcome";
         }
         
-        transaction.TransType = transType;
-        transaction.TotalTrans = Integer.parseInt(totalTrans);
-        transaction.Description = Description;
+        Transaction transaction = new Transaction(0, transType, Description, Integer.parseInt(totalTrans), null, userId);
+        return transactionService.insert(transaction);
         
-        try {
-            transaction.addTransaction();
-        } catch (SQLException ex) {
-            Logger.getLogger(TransactionController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
     
     public int getIncome(){
         
+        String filter = "Income";
         int result = 0;
         
-        try {
-            rs = transaction.getTransactionByUserFiltered("Income");
-            
-            while(rs.next()){
-                result += rs.getInt("TotalTrans");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(TransactionController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        result = transactionService.getTransactionByUserIdFiltered(userId, filter).stream().map((transactionByUserIdFiltered) -> 
+            transactionByUserIdFiltered.getTotalTrans()).reduce(result, Integer::sum);
         
         return result;
     }
     
     public int getOutcome(){
+        
+        String filter = "Outcome";
         int result = 0;
         
-        try {
-            rs = transaction.getTransactionByUserFiltered("Outcome");
-            
-            while(rs.next()){
-                result += rs.getInt("TotalTrans");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(TransactionController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        result = transactionService.getTransactionByUserIdFiltered(userId, filter).stream().map((transactionByUserIdFiltered) -> 
+            transactionByUserIdFiltered.getTotalTrans()).reduce(result, Integer::sum);
         
         return result;
-    }
-    
-    // Generate tabel
-    public final DefaultTableModel generateTableModel(){
-
-        String[] columnNames = {"Tipe", "Nominal", "Keterangan", "Tanggal"};
-        DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
-        try {
-
-            rs = transaction.getTransactionByUser();
-            
-            while(rs.next()){
-                
-                String type = rs.getString("TransType");
-                String nominal = rs.getString("TotalTrans");
-                String desc = rs.getString("Description");
-                String time = rs.getString("Time");
-                String[] data = {type, nominal, desc, time};
-
-                tableModel.addRow(data);
-            }
-          
-            db.closeQuery();
-
-        } catch (SQLException ex) {
-           // Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return tableModel;
-
     }
     
 }

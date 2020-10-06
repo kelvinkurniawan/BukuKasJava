@@ -15,6 +15,12 @@ public class Balance {
     private int Balance;
     private int UserId;
 
+    public Balance(int BalanceID, int Balance, int UserId) {
+        this.BalanceID = BalanceID;
+        this.Balance = Balance;
+        this.UserId = UserId;
+    }
+    
     public int getBalanceID() {
         return BalanceID;
     }

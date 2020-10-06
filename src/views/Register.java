@@ -6,9 +6,12 @@
 package views;
 
 import controllers.AuthenticationController;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import utils.modules.Routing;
 /**
  *
@@ -272,18 +275,17 @@ public class Register extends javax.swing.JFrame {
         // TODO add your handling code here:
         AuthenticationController auth = new AuthenticationController();
         
-        try {
-            if (jTextField1.getText().equals("") || jTextField2.getText().equals("") || jTextField3.getText().equals("") || jTextField4.getText().equals("") || jPasswordField1.getText().equals("")) {
-                jOptionPane1.showMessageDialog(this,"Please fill the blank!");
-                return;
-            }else{
+        if (jTextField1.getText().equals("") || jTextField2.getText().equals("") || jTextField3.getText().equals("") || jTextField4.getText().equals("") || jPasswordField1.getText().equals("")) {
+            JOptionPane.showMessageDialog(this,"Please fill the blank!");
+        }else{
+            try {
                 auth.register(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jPasswordField1.getText());
-                jOptionPane1.showMessageDialog(this, "Registed, please login!");        
-                new Routing().displayLogin();
+                JOptionPane.showMessageDialog(this, "Registed, please login!");
+                new Login().setVisible(rootPaneCheckingEnabled);
                 this.setVisible(false);
+            } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+                Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -299,7 +301,7 @@ public class Register extends javax.swing.JFrame {
     private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        new Routing().displayLogin();
+        //Routing.login().setVisible(true);
     }//GEN-LAST:event_jLabel12MouseClicked
 
     /**

@@ -7,26 +7,26 @@ package views;
 
 import controllers.BalanceController;
 import javax.swing.JOptionPane;
-import utils.modules.Routing;
+import utils.modules.PrintPDF;
 
 /**
  *
  * @author ASUS
  */
-public class SetBalance extends javax.swing.JFrame {
+public class PrintPdf extends javax.swing.JFrame {
 
     BalanceController balanceController = new BalanceController();
     
     /**
      * Creates new form SetSaldo
      */
-    public SetBalance() {
+    public PrintPdf() {
         initComponents();
         prepareScreen();
     }
     
     public final void prepareScreen(){
-        txtSaldoAwal.setText(Integer.toString(balanceController.getBalance()));
+        txtFileName.setText(Integer.toString(balanceController.getBalance()));
     }
 
     /**
@@ -43,7 +43,7 @@ public class SetBalance extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        txtSaldoAwal = new javax.swing.JTextField();
+        txtFileName = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
 
@@ -53,7 +53,7 @@ public class SetBalance extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Set Balance");
+        jLabel1.setText("Print To PDF");
 
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
 
@@ -71,11 +71,11 @@ public class SetBalance extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Amount");
+        jLabel2.setText("Filename");
 
         btnSave.setBackground(new java.awt.Color(255, 255, 255));
         btnSave.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
-        btnSave.setText("Save");
+        btnSave.setText("Print");
         btnSave.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,7 +108,7 @@ public class SetBalance extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel2)
                 .addGap(28, 28, 28)
-                .addComponent(txtSaldoAwal, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtFileName, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -131,7 +131,7 @@ public class SetBalance extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtSaldoAwal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFileName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -162,12 +162,12 @@ public class SetBalance extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        if(!balanceController.setBalance(txtSaldoAwal.getText())){
-            JOptionPane.showMessageDialog(this, "Something went wrong");
-        }else{
-            JOptionPane.showMessageDialog(this, "saved!");
+        if(new PrintPDF().generate(txtFileName.getText())){
+            JOptionPane.showMessageDialog(this, "Report created!");
             this.setVisible(false);
             new Home().setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(this, "Something went wrong!");
         }
         
     }//GEN-LAST:event_btnSaveActionPerformed
@@ -189,14 +189,18 @@ public class SetBalance extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SetBalance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrintPdf.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SetBalance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrintPdf.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SetBalance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrintPdf.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SetBalance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrintPdf.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -205,7 +209,7 @@ public class SetBalance extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SetBalance().setVisible(true);
+                new PrintPdf().setVisible(true);
             }
         });
     }
@@ -218,6 +222,6 @@ public class SetBalance extends javax.swing.JFrame {
     private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField txtSaldoAwal;
+    private javax.swing.JTextField txtFileName;
     // End of variables declaration//GEN-END:variables
 }
