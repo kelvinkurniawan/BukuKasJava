@@ -74,34 +74,4 @@ public class TransactionController {
         return result;
     }
     
-    // Generate tabel
-    public final DefaultTableModel generateTableModel(){
-
-        String[] columnNames = {"Tipe", "Nominal", "Keterangan", "Tanggal"};
-        DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
-        try {
-
-          //  rs = transaction.getTransactionByUser();
-            
-            while(rs.next()){
-                
-                String type = rs.getString("TransType");
-                String nominal = rs.getString("TotalTrans");
-                String desc = rs.getString("Description");
-                String time = rs.getString("Time");
-                String[] data = {type, nominal, desc, time};
-
-                tableModel.addRow(data);
-            }
-          
-          //  db.closeQuery();
-
-        } catch (SQLException ex) {
-           // Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return tableModel;
-
-    }
-    
 }

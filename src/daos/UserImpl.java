@@ -61,11 +61,13 @@ public class UserImpl implements UserDao{
         User user = null;
         
         try{
-            prepareStatement = connection.prepareStatement(""+Query.QUERY_SELECT_USER_BY_USERNAME);
+            prepareStatement = connection.prepareStatement(Query.QUERY_SELECT_USER_BY_USERNAME.getDisplayQuery());
             prepareStatement.setString(1, username);
             executeQuery = prepareStatement.executeQuery();
             if (executeQuery.next()) {
-                System.out.println(""+Query.QUERY_SELECT_USER_BY_USERNAME);
+                
+                //System.out.println(Query.QUERY_SELECT_USER_BY_USERNAME.getDisplayQuery());
+                
                 user = new User(executeQuery.getInt("UserId"), executeQuery.getString("Name"), executeQuery.getString("Email"), executeQuery.getString("Username"), executeQuery.getString("Password"), executeQuery.getString("Telephone"));
             }
         } catch (SQLException ex) {

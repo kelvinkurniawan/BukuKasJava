@@ -36,11 +36,11 @@ public class BalanceImpl implements BalanceDao{
         Balance balance = null;
         
         try{
-            prepareStatement = connection.prepareStatement(""+Query.QUERY_SELECT_BALANCE_BY_USER_ID);
+            prepareStatement = connection.prepareStatement(Query.QUERY_SELECT_BALANCE_BY_USER_ID.getDisplayQuery());
             prepareStatement.setInt(1, UserId);
             executeQuery = prepareStatement.executeQuery();
             if (executeQuery.next()) {
-                System.out.println(""+Query.QUERY_SELECT_BALANCE_BY_USER_ID);
+                System.out.println(Query.QUERY_SELECT_BALANCE_BY_USER_ID.getDisplayQuery());
                 balance = new Balance(executeQuery.getInt("BalanceId"), executeQuery.getInt("Balance"), executeQuery.getInt("UserId"));
             }
         } catch (SQLException ex) {
@@ -68,7 +68,7 @@ public class BalanceImpl implements BalanceDao{
     public boolean insert(Balance balance) {        
         PreparedStatement prepareStatement = null;
         try {
-            prepareStatement = connection.prepareStatement(""+Query.QUERY_INSERT_BALANCE);
+            prepareStatement = connection.prepareStatement(Query.QUERY_INSERT_BALANCE.getDisplayQuery());
             prepareStatement.setInt(1, balance.getBalanceID());
             prepareStatement.setInt(2, balance.getBalance());
             prepareStatement.setInt(3, balance.getUserId());

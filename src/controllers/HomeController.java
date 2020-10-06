@@ -5,28 +5,46 @@
  */
 package controllers;
 
-import utils.modules.Routing;
+import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+import models.Transaction;
+import services.TransactionService;
+import services.TransactionServiceImpl;
+import utils.modules.JdbcUtils;
+import utils.modules.SessionManager;
 
 /**
  *
  * @author kelvi
  */
-
-import utils.modules.Routing;
-
 public class HomeController {
     
-    Routing route = new Routing();
+    TransactionService transactionService; 
     
-    public void displayHome(){
-        Routing.displayHome();
+    public HomeController(){
+        transactionService = new TransactionServiceImpl(JdbcUtils.getTransactionDao());
     }
+    
+    public final DefaultTableModel generateTableModel(){
+
+        int id = SessionManager.userId;
         
-    public void displayAddTransaction(){
-        Routing.displayAddTransaction();
+        String[] columnNames = {"Tipe", "Nominal", "Keterangan", "Tanggal"};
+        DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
+        
+        for (Transaction transactionByUserId : transactionService.getTransactionByUserId(id)) {
+            
+            String type = transactionByUserId.getTransType();
+            int nominal = transactionByUserId.getTotalTrans();
+            String desc = transactionByUserId.getDescription();
+            String time = transactionByUserId.getTime();
+
+            Object[] data = {type, nominal, desc, time};
+
+            tableModel.addRow(data);
+        }
+          
+        return tableModel;
     }
     
-    public void displaySetBalance(){
-        Routing.displaySetBalance();
-    }
 }

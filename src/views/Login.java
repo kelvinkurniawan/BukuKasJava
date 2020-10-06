@@ -7,7 +7,6 @@ package views;
 
 
 import controllers.AuthenticationController;
-import controllers.HomeController;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -204,24 +203,12 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         AuthenticationController auth = new AuthenticationController();
         
-        try {
-            
-            if(auth.login(jTextField1.getText(), jPasswordField1.getText())){
-                this.setVisible(false);
-            }else{
-                JOptionPane.showMessageDialog(this, "Username or password is wrong!");
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        new Routing().displayRegister();
+        Routing.register().setVisible(true);
     }//GEN-LAST:event_jLabel7MouseClicked
 
     /**

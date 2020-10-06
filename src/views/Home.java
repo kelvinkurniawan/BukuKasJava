@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import utils.modules.Routing;
 import utils.modules.SessionManager;
 
 /**
@@ -20,6 +21,7 @@ import utils.modules.SessionManager;
 public class Home extends javax.swing.JFrame {
     
     public static ResultSet rs;
+    HomeController homeController = new HomeController();
     TransactionController tc = new TransactionController();
     BalanceController bc = new BalanceController();
     
@@ -34,7 +36,7 @@ public class Home extends javax.swing.JFrame {
     public final void prepareScreen(){
         
         // Set tabel model
-        jTable1.setModel(tc.generateTableModel());
+        jTable1.setModel(homeController.generateTableModel());
         
         try {
             // Display balance
@@ -387,13 +389,13 @@ public class Home extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        new HomeController().displaySetBalance();
+        Routing.setBalance().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        new HomeController().displayAddTransaction();
+        Routing.addTrasaction().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

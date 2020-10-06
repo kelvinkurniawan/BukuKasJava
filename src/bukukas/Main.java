@@ -5,6 +5,7 @@
  */
 package bukukas;
 
+import controllers.AuthenticationController;
 import utils.modules.Routing;
 
 /**
@@ -16,7 +17,8 @@ public class Main {
     
     public static void main(String[] args) {
         
-        Routing.displayLogin();
+        Routing.login().setVisible(true);
+        new AuthenticationController().login("kelvin", "12345678");
         
     }
     

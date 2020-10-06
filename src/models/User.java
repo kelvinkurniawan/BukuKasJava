@@ -5,6 +5,8 @@
  */
 package models;
 
+import services.UserService;
+
 /**
  *
  * @author kelvi
@@ -24,6 +26,10 @@ public class User {
         this.username = username;
         this.password = password;
         this.phone = phone;
+    }
+
+    public User(UserService userServiceImpl) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 

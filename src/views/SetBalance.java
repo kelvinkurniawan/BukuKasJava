@@ -6,10 +6,10 @@
 package views;
 
 import controllers.BalanceController;
-import controllers.HomeController;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import utils.modules.Routing;
 
 /**
  *
@@ -164,7 +164,7 @@ public class SetBalance extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        new HomeController().displayHome();
+        Routing.homeView().setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed

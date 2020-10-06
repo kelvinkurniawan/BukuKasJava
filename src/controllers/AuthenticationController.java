@@ -6,12 +6,13 @@
 package controllers;
 
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import daos.UserImpl;
+import models.User;
+import services.UserService;
+import services.UserServiceImpl;
 
 import utils.modules.Encryption;
-import utils.modules.DBConnection;
+import utils.modules.JdbcUtils;
 import utils.modules.Routing;
 import utils.modules.SessionManager;
 /**
@@ -20,45 +21,37 @@ import utils.modules.SessionManager;
  */
 public class AuthenticationController {
     
-    public static ResultSet rs;
- 
     
-    public boolean login(String username, String password) throws SQLException{
-        //UserImpl users = new UserImpl(null, null, null, username, password);
+    UserService userService;
+    
+    public AuthenticationController(){
+        userService = new UserServiceImpl(JdbcUtils.getUserDao());
+    }
+ 
+    public void login(String username, String password){
         
-        if(username.equals("") || password.equals("")){
-            return false;
-        }
+        userService.getUserByUsername(username);
         
-        //rs = users.getUserByUsername();
-        
-        if(rs.next()){
-          if(Encryption.getDecrypt(rs.getString("password")).equals(password)){
-              
-              SessionManager.userId = rs.getInt("UserId");
-              SessionManager.name = rs.getString("name");
-              
-              new Routing().displayHome();
-              
-              return true;
-              
-          }else{
-              return false;
-          }
+        if(Encryption.getDecrypt(userService.getUserByUsername(username).getPassword()).equals(password)){
+            
+            System.out.println("Logged In");
+            
+            SessionManager.userId = userService.getUserByUsername(username).getUserId();
+            SessionManager.name = userService.getUserByUsername(username).getName();
+            
+            //Routing.login().setVisible(false);
+            Routing.homeView().setVisible(true);
+            
         }else{
-            return false;
+            
+            System.out.println("Wrong username or password");
+            
         }
         
     }
     
-    public boolean register(String name, String email, String phone, String username, String password) throws SQLException{       
-        if(name.equals("") ||username.equals("") || password.equals("") || email.equals("") || phone.equals("")){
-            return false;
-        }
-       // UserImpl users = new UserImpl(name, email, phone,  username, Encryption.getEncrypt(password));
+    public void register(String name, String email, String phone, String username, String password) throws SQLException{       
         
-        //return users.addUser();
-        return true;
     }
             
 }
