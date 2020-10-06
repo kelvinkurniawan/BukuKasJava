@@ -7,6 +7,7 @@ package controllers;
 
 
 import java.sql.SQLException;
+import models.User;
 import services.UserService;
 import services.UserServiceImpl;
 
@@ -49,7 +50,11 @@ public class AuthenticationController {
         
     }
     
-    public void register(String name, String email, String phone, String username, String password) throws SQLException{       
+    public boolean register(String name, String email, String phone, String username, String password){       
+        
+        User user = new User(0, name, email, username, Encryption.getEncrypt(password), phone);
+        
+        return userService.insert(user);
         
     }
             

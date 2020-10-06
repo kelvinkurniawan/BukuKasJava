@@ -29,7 +29,9 @@ public class BalanceController {
     }
     
     public int getBalance(){
-        
+        if(!checkUserBalance()){
+            return 0;
+        }
         return balanceService.getBalanceByUserId(this.userId).getBalance();
         
     }
@@ -38,6 +40,11 @@ public class BalanceController {
         
         return getBalance() + transactionController.getIncome() - transactionController.getOutcome();
         
+    }
+    
+    public boolean checkUserBalance(){
+        
+        return balanceService.getBalanceByUserId(userId) != null;
     }
     
     public boolean setBalance(String newBalance){

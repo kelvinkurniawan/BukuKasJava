@@ -9,6 +9,7 @@ import controllers.AuthenticationController;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import utils.modules.Routing;
 /**
  *
@@ -272,18 +273,13 @@ public class Register extends javax.swing.JFrame {
         // TODO add your handling code here:
         AuthenticationController auth = new AuthenticationController();
         
-        try {
-            if (jTextField1.getText().equals("") || jTextField2.getText().equals("") || jTextField3.getText().equals("") || jTextField4.getText().equals("") || jPasswordField1.getText().equals("")) {
-                jOptionPane1.showMessageDialog(this,"Please fill the blank!");
-                return;
-            }else{
-                auth.register(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jPasswordField1.getText());
-                jOptionPane1.showMessageDialog(this, "Registed, please login!");        
-                //Routing.login().setVisible(true);
-                this.setVisible(false);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+        if (jTextField1.getText().equals("") || jTextField2.getText().equals("") || jTextField3.getText().equals("") || jTextField4.getText().equals("") || jPasswordField1.getText().equals("")) {
+            JOptionPane.showMessageDialog(this,"Please fill the blank!");
+        }else{
+            auth.register(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jPasswordField1.getText());
+            JOptionPane.showMessageDialog(this, "Registed, please login!");        
+            new Login().setVisible(rootPaneCheckingEnabled);
+            this.setVisible(false);
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -31,7 +31,7 @@ public class UserImpl implements UserDao{
     public boolean insert(User user) {
         PreparedStatement prepareStatement = null;
         try {
-            prepareStatement = connection.prepareStatement(""+Query.QUERY_INSERT_USER);
+            prepareStatement = connection.prepareStatement(Query.QUERY_INSERT_USER.getDisplayQuery());
             prepareStatement.setString(1, user.getName());
             prepareStatement.setString(2, user.getEmail());
             prepareStatement.setString(3, user.getUsername());

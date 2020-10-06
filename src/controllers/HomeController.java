@@ -41,6 +41,10 @@ public class HomeController {
     public int getOutcome(){
         return transactionController.getOutcome();
     }
+    
+    public boolean checkUserBalance(){
+        return balanceController.checkUserBalance();
+    }
 
     public int getCurrentlyBalance(){
         return this.getBalance() + this.getIncome() - this.getOutcome();

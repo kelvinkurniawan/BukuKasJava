@@ -7,6 +7,7 @@ package views;
 
 
 import controllers.AuthenticationController;
+import javax.swing.JOptionPane;
 /**
  *
  * @author ASUS
@@ -198,7 +199,7 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         AuthenticationController auth = new AuthenticationController();
         if(!auth.login(jTextField1.getText(), jPasswordField1.getText())){
-            jOptionPane1.showMessageDialog(this, "Wrong Username Or Password");
+            JOptionPane.showMessageDialog(this, "Wrong Username Or Password");
         }else{
             this.setVisible(false);
         }
@@ -207,7 +208,7 @@ public class Login extends javax.swing.JFrame {
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        //Routing.register().setVisible(true);
+        new Register().setVisible(true);
     }//GEN-LAST:event_jLabel7MouseClicked
 
     /**
