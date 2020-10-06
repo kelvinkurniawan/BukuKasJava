@@ -5,13 +5,12 @@
  */
 package controllers;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
-import daos.TransactionImpl;
-import utils.modules.DBConnection;
+import services.TransactionService;
+import services.TransactionServiceImpl;
+import utils.modules.JdbcUtils;
 import utils.modules.SessionManager;
 
 /**
@@ -19,12 +18,14 @@ import utils.modules.SessionManager;
  * @author kelvi
  */
 public class TransactionController {
-
-    public String userId;
-    public ResultSet rs;
     
-    DBConnection db = new DBConnection();
-    //TransactionImpl transaction = new TransactionImpl(SessionManager.userId);
+    TransactionService transactionService; 
+    int userId;
+    
+    public TransactionController(){
+        this.transactionService = new TransactionServiceImpl(JdbcUtils.getTransactionDao());
+        this.userId = SessionManager.userId;
+    }
     
     public void addTransaction(int transTypeTemp, String totalTrans, String Description){
         String transType;
@@ -45,14 +46,8 @@ public class TransactionController {
         
         int result = 0;
         
-        try {
-           // rs = transaction.getTransactionByUserFiltered("Income");
+        for (int i = 0; i < transactionService.getTransactionByUserIdFiltered(userId, "Income"); i++) {
             
-            while(rs.next()){
-                result += rs.getInt("TotalTrans");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(TransactionController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return result;

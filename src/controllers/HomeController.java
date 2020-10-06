@@ -32,17 +32,14 @@ public class HomeController {
         String[] columnNames = {"Tipe", "Nominal", "Keterangan", "Tanggal"};
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
         
-        for (Transaction transactionByUserId : transactionService.getTransactionByUserId(id)) {
-            
+        transactionService.getTransactionByUserId(id).stream().map((transactionByUserId) -> {
             String type = transactionByUserId.getTransType();
             int nominal = transactionByUserId.getTotalTrans();
             String desc = transactionByUserId.getDescription();
             String time = transactionByUserId.getTime();
-
             Object[] data = {type, nominal, desc, time};
-
-            tableModel.addRow(data);
-        }
+            return data;
+        }).forEachOrdered(tableModel::addRow);
           
         return tableModel;
     }
