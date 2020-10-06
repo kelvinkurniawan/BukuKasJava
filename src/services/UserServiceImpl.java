@@ -16,15 +16,29 @@ public class UserServiceImpl implements UserService{
 
     public final UserDao userDao;
     
+    /**
+     * Implementasi UserService
+     * @param userDao 
+     */
     public UserServiceImpl(UserDao userDao){
         this.userDao = userDao;
     }
     
+    /**
+     * Overide getUserByUsername
+     * @param username
+     * @return userDao.getUserByUsername(username)
+     */
     @Override
     public User getUserByUsername(String username) {
         return userDao.getUserByUsername(username);
     }
 
+    /**
+     * insert
+     * @param user
+     * @return userDao.insert(user)
+     */
     @Override
     public boolean insert(User user) {
         return userDao.insert(user);

@@ -15,19 +15,27 @@ import utils.modules.SessionManager;
  *
  * @author kelvi
  */
+
+
 public class BalanceController {
     
     BalanceService balanceService;
     TransactionController transactionController;
     int userId;
     
+    /**
+     * fungsi control balance
+     */
     public BalanceController(){
         
         this.balanceService = new BalanceServiceImpl(JdbcUtils.getBalanceDao());
         this.userId = SessionManager.userId;
         
     }
-    
+    /**
+     * Mendapatkan nilai dari Balance
+     * @return int balance
+     */
     public int getBalance(){
         if(!checkUserBalance()){
             return 0;
@@ -36,17 +44,30 @@ public class BalanceController {
         
     }
     
+    /**
+     * Mendapatkan saldo saat ini
+     * @return currentlyBalance
+     */
     public int currentlyBalance(){
         
         return getBalance() + transactionController.getIncome() - transactionController.getOutcome();
         
     }
     
+    /**
+     * mengecek apakah balance user kosong atau tidak
+     * @return boolean checkUserBalance
+     */
     public boolean checkUserBalance(){
         
         return balanceService.getBalanceByUserId(userId) != null;
     }
     
+    /**
+     * Fungsi untuk mengeset nilai Balance
+     * @param newBalance
+     * @return balanceService.insert(balance)
+     */
     public boolean setBalance(String newBalance){
         
         Balance balance = new Balance(0, Integer.parseInt(newBalance), userId);

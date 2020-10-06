@@ -25,11 +25,21 @@ import views.Home;
 public class AuthenticationController {
 
     UserService userService;
-
+    /**
+     * fungsi control untuk autentifikasi user
+     */
     public AuthenticationController() {
         userService = new UserServiceImpl(JdbcUtils.getUserDao());
     }
-
+    
+    /**
+     * fungsi memverifikasi username dan password untuk login
+     * @param username
+     * @param password
+     * @return boolean login
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException 
+     */
     public boolean login(String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException  {
 
         if (userService.getUserByUsername(username) != null) {
@@ -51,7 +61,17 @@ public class AuthenticationController {
         }
 
     }
-
+    /**
+     * fungsi untuk melakukan registrasi
+     * @param name
+     * @param email
+     * @param phone
+     * @param username
+     * @param password
+     * @return boolean register
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException 
+     */
     public boolean register(String name, String email, String phone, String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
 
         User user = new User(0, name, email, username, BCrypt.hashpw(password, BCrypt.gensalt(12)), phone);

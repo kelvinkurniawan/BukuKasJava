@@ -15,12 +15,21 @@ public class Balance {
     private int Balance;
     private int UserId;
 
+    /**
+     * Constructor Balance (From Package Models)
+     * @param BalanceID
+     * @param Balance
+     * @param UserId 
+     */
     public Balance(int BalanceID, int Balance, int UserId) {
         this.BalanceID = BalanceID;
         this.Balance = Balance;
         this.UserId = UserId;
     }
-    
+    /**
+     * 
+     * @return 
+     */
     public int getBalanceID() {
         return BalanceID;
     }

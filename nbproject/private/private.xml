@@ -3,8 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/bukukas/Main.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/controllers/AuthenticationController.java</file>
+            <file>file:/C:/Users/acer/Documents/Semester%207/Kapita%20Selekta/BukuKas/src/daos/BalanceDao.java</file>
+            <file>file:/C:/Users/acer/Documents/Semester%207/Kapita%20Selekta/BukuKas/src/utils/modules/SessionManager.java</file>
+            <file>file:/C:/Users/acer/Documents/Semester%207/Kapita%20Selekta/BukuKas/src/utils/modules/Encryption.java</file>
+            <file>file:/C:/Users/acer/Documents/Semester%207/Kapita%20Selekta/BukuKas/src/utils/modules/DBConnection.java</file>
+            <file>file:/C:/Users/acer/Documents/Semester%207/Kapita%20Selekta/BukuKas/src/models/User.java</file>
+            <file>file:/C:/Users/acer/Documents/Semester%207/Kapita%20Selekta/BukuKas/src/utils/configs/DBConfig.java</file>
+            <file>file:/C:/Users/acer/Documents/Semester%207/Kapita%20Selekta/BukuKas/src/controllers/AuthenticationController.java</file>
+            <file>file:/C:/Users/acer/Documents/Semester%207/Kapita%20Selekta/BukuKas/src/daos/UserDao.java</file>
+            <file>file:/C:/Users/acer/Documents/Semester%207/Kapita%20Selekta/BukuKas/src/daos/TransactionDao.java</file>
         </group>
     </open-files>
 </project-private>

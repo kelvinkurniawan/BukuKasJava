@@ -23,31 +23,58 @@ public class HomeController {
     
     int userId;
     
+    /**
+     * Fungsi control Home
+     */
     public HomeController(){
         this.transactionService = new TransactionServiceImpl(JdbcUtils.getTransactionDao());
         this.userId = SessionManager.userId;
     }
     
+    /**
+     * Mendapatkan nilai balance
+     * @return balanceController.getBalance()
+     */
     public int getBalance(){
         return balanceController.getBalance();
     }
     
+    /**
+     * Mendapatkan nilai dari pemasukan
+     * @return transactionController.getIncome()
+     */
     public int getIncome(){
         return transactionController.getIncome();
     }
     
+    /**
+     * Mendapatkan nilai dari pengeluaran
+     * @return transactionController.getOutcome()
+     */
     public int getOutcome(){
         return transactionController.getOutcome();
     }
     
+    /**
+     * Mengecek user balance kosong atau tidak
+     * @return return balanceController.checkUserBalance()
+     */
     public boolean checkUserBalance(){
         return balanceController.checkUserBalance();
     }
 
+    /**
+     * Mendapatkan nilai saldo saat ini
+     * @return this.getBalance() + this.getIncome() - this.getOutcome()
+     */
     public int getCurrentlyBalance(){
         return this.getBalance() + this.getIncome() - this.getOutcome();
     }
     
+    /**
+     * fungsi untuk mencetak tabel
+     * @return tableModel
+     */
     public final DefaultTableModel generateTableModel(){
 
         int id = SessionManager.userId;
