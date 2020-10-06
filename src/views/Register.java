@@ -6,6 +6,8 @@
 package views;
 
 import controllers.AuthenticationController;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -276,10 +278,14 @@ public class Register extends javax.swing.JFrame {
         if (jTextField1.getText().equals("") || jTextField2.getText().equals("") || jTextField3.getText().equals("") || jTextField4.getText().equals("") || jPasswordField1.getText().equals("")) {
             JOptionPane.showMessageDialog(this,"Please fill the blank!");
         }else{
-            auth.register(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jPasswordField1.getText());
-            JOptionPane.showMessageDialog(this, "Registed, please login!");        
-            new Login().setVisible(rootPaneCheckingEnabled);
-            this.setVisible(false);
+            try {
+                auth.register(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jPasswordField1.getText());
+                JOptionPane.showMessageDialog(this, "Registed, please login!");
+                new Login().setVisible(rootPaneCheckingEnabled);
+                this.setVisible(false);
+            } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+                Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed

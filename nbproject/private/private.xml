@@ -3,37 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/daos/BalanceImpl.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/daos/BalanceDao.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/daos/TransactionDao.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/utils/modules/SessionManager.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/views/Login.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/views/SetBalance.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/utils/modules/Routing.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/services/TransactionServiceImpl.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/daos/UserImpl.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/views/AddTransaction.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/daos/UserDao.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/utils/configs/DBConfig.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/utils/modules/Query.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/controllers/TransactionController.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/services/UserServiceImpl.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/utils/configs/TableConfig.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/utils/modules/JdbcUtils.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/controllers/AuthenticationController.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/services/UserService.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/views/Register.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/controllers/BalanceController.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/services/BalanceService.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/services/TransactionService.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/utils/modules/DBConnection.java</file>
             <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/bukukas/Main.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/views/Home.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/models/Balance.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/models/User.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/controllers/HomeController.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/models/Transaction.java</file>
-            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/services/BalanceServiceImpl.java</file>
+            <file>file:/D:/Kuliah/SMT%207/Kapita/BukuKas/src/controllers/AuthenticationController.java</file>
         </group>
     </open-files>
 </project-private>

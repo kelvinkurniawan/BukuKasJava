@@ -36,9 +36,9 @@ public class DBConnection {
         if (connection == null) {
             try {
                 MysqlDataSource dataSource = new MysqlDataSource();
-                dataSource.setServerName("localhost");
-                dataSource.setPort(3306);
-                dataSource.setDatabaseName("bukukas");
+                dataSource.setServerName(DBConfig.SERVER);
+                dataSource.setPort(DBConfig.PORT);
+                dataSource.setDatabaseName(DBConfig.DB_NAME);
                 dataSource.setUser(DBConfig.USER);
                 dataSource.setPassword(DBConfig.PASS);
                 connection = dataSource.getConnection();

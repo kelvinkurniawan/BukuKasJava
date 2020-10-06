@@ -7,6 +7,10 @@ package views;
 
 
 import controllers.AuthenticationController;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 /**
  *
@@ -196,12 +200,16 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        AuthenticationController auth = new AuthenticationController();
-        if(!auth.login(jTextField1.getText(), jPasswordField1.getText())){
-            JOptionPane.showMessageDialog(this, "Wrong Username Or Password");
-        }else{
-            this.setVisible(false);
+        try {
+            // TODO add your handling code here:
+            AuthenticationController auth = new AuthenticationController();
+            if(!auth.login(jTextField1.getText(), jPasswordField1.getText())){
+                JOptionPane.showMessageDialog(this, "Wrong Username Or Password");
+            }else{
+                this.setVisible(false);
+            }
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
