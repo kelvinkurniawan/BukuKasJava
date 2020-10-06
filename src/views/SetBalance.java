@@ -6,9 +6,6 @@
 package views;
 
 import controllers.BalanceController;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import utils.modules.Routing;
 
 /**
@@ -17,7 +14,8 @@ import utils.modules.Routing;
  */
 public class SetBalance extends javax.swing.JFrame {
 
-    BalanceController bc = new BalanceController();
+    BalanceController balanceController = new BalanceController();
+    Routing routing = new Routing();
     
     /**
      * Creates new form SetSaldo
@@ -28,11 +26,7 @@ public class SetBalance extends javax.swing.JFrame {
     }
     
     public final void prepareScreen(){
-        try {
-            txtSaldoAwal.setText(Integer.toString(bc.getBalance()));
-        } catch (SQLException ex) {
-            Logger.getLogger(SetBalance.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        txtSaldoAwal.setText(Integer.toString(balanceController.getBalance()));
     }
 
     /**
@@ -164,19 +158,11 @@ public class SetBalance extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        Routing.homeView().setVisible(true);
+        routing.homeView().setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        try {
-            // TODO add your handling code here:
-            bc.setBalance(txtSaldoAwal.getText());
-            jOptionPane1.showMessageDialog(this, "Saved!");
-            this.setVisible(false);
-            new Home().setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(SetBalance.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }//GEN-LAST:event_btnSaveActionPerformed
 
     /**

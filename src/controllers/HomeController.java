@@ -5,7 +5,6 @@
  */
 package controllers;
 
-import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
 import models.Transaction;
 import services.TransactionService;
@@ -19,10 +18,31 @@ import utils.modules.SessionManager;
  */
 public class HomeController {
     
-    TransactionService transactionService; 
+    TransactionService transactionService ; 
+    BalanceController balanceController = new BalanceController();
+    TransactionController transactionController = new TransactionController();
+    
+    int userId;
     
     public HomeController(){
-        transactionService = new TransactionServiceImpl(JdbcUtils.getTransactionDao());
+        this.transactionService = new TransactionServiceImpl(JdbcUtils.getTransactionDao());
+        this.userId = SessionManager.userId;
+    }
+    
+    public int getBalance(){
+        return balanceController.getBalance();
+    }
+    
+    public int getIncome(){
+        return transactionController.getIncome();
+    }
+    
+    public int getOutcome(){
+        return transactionController.getOutcome();
+    }
+
+    public int getCurrentlyBalance(){
+        return this.getBalance() + this.getIncome() - this.getOutcome();
     }
     
     public final DefaultTableModel generateTableModel(){
@@ -38,8 +58,10 @@ public class HomeController {
             String desc = transactionByUserId.getDescription();
             String time = transactionByUserId.getTime();
             Object[] data = {type, nominal, desc, time};
-            return data;
-        }).forEachOrdered(tableModel::addRow);
+            return data;            
+        }).forEachOrdered((data) -> {
+            tableModel.addRow(data);
+        });
           
         return tableModel;
     }

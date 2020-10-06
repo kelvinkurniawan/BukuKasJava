@@ -17,6 +17,7 @@ import utils.modules.Routing;
 public class AddTransaction extends javax.swing.JFrame {
     
     TransactionController tc = new TransactionController();
+    Routing routing = new Routing();
 
     /**
      * Creates new form TambahTransaksi
@@ -184,7 +185,7 @@ public class AddTransaction extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        Routing.homeView().setVisible(true);
+        routing.homeView().setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
@@ -196,7 +197,7 @@ public class AddTransaction extends javax.swing.JFrame {
             tc.addTransaction(comboxType.getSelectedIndex(), jTextField1.getText(), txtaDescription.getText());
             JOptionPane.showMessageDialog(this, "Saved!");
             this.setVisible(false);
-            Routing.homeView().setVisible(true);
+            routing.homeView().setVisible(true);
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 

@@ -79,7 +79,7 @@ public class TransactionImpl implements TransactionDao{
         try{
             prepareStatement = connection.prepareStatement(Query.QUERY_SELECT_TRANSACTION_BY_USER_ID_FILTERED.getDisplayQuery());
             prepareStatement.setInt(1, UserId);
-            prepareStatement.setString(1, Filter);
+            prepareStatement.setString(2, Filter);
             executeQuery = prepareStatement.executeQuery();
             if (executeQuery.next()) {
                 System.out.println(Query.QUERY_SELECT_TRANSACTION_BY_USER_ID_FILTERED.getDisplayQuery());

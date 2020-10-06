@@ -27,14 +27,20 @@ public class DBConnection {
     
     
     private static Connection connection;
-
+    
+    /**
+     * fungsi untuk membuat koneksi
+     * @return connection
+     */
     public static Connection connect() {
         if (connection == null) {
             try {
                 MysqlDataSource dataSource = new MysqlDataSource();
+                dataSource.setServerName("localhost");
+                dataSource.setPort(3306);
+                dataSource.setDatabaseName("bukukas");
                 dataSource.setUser(DBConfig.USER);
                 dataSource.setPassword(DBConfig.PASS);
-                dataSource.setUrl(DBConfig.DB_URL);
                 connection = dataSource.getConnection();
             } catch (SQLException ex) {
                 Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);

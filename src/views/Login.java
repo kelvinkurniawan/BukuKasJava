@@ -7,11 +7,6 @@ package views;
 
 
 import controllers.AuthenticationController;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import utils.modules.Routing;
 /**
  *
  * @author ASUS
@@ -202,13 +197,13 @@ public class Login extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         AuthenticationController auth = new AuthenticationController();
-        
+        auth.login(jTextField1.getText(), jPasswordField1.getText());
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        Routing.register().setVisible(true);
+        //Routing.register().setVisible(true);
     }//GEN-LAST:event_jLabel7MouseClicked
 
     /**

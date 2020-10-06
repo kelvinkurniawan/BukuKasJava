@@ -5,10 +5,10 @@
  */
 package controllers;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import services.BalanceService;
+import services.BalanceServiceImpl;
+import utils.modules.JdbcUtils;
+import utils.modules.SessionManager;
 
 /**
  *
@@ -16,45 +16,31 @@ import java.util.logging.Logger;
  */
 public class BalanceController {
     
-    public static ResultSet rs;
+    BalanceService balanceService;
+    TransactionController transactionController;
+    int userId;
     
-    public String id;
-    public boolean isExist = false;
-    
-    TransactionController tc = new TransactionController();
-    //BalanceImpl balance = new BalanceImpl(SessionManager.userId);
-    
-    public int getBalance() throws SQLException{
+    public BalanceController(){
         
-       // rs = balance.getBalanceById();
-        if(rs.next()){
-            isExist = true;
-            return rs.getInt("balance");
-        }else{
-            isExist = false;
-            return 0;
-        }
+        this.balanceService = new BalanceServiceImpl(JdbcUtils.getBalanceDao());
+        this.userId = SessionManager.userId;
+        
+    }
+    
+    public int getBalance(){
+        
+        return balanceService.getBalanceByUserId(this.userId).getBalance();
         
     }
     
     public int currentlyBalance(){
-        try {
-            return this.getBalance() + tc.getIncome() - tc.getOutcome();
-        } catch (SQLException ex) {
-            Logger.getLogger(BalanceController.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
-        return 0;
+        return getBalance() + transactionController.getIncome() - transactionController.getOutcome();
+        
     }
     
-    public boolean setBalance(String newBalance) throws SQLException{
-        if(isExist){
-            //balance.updateBalance(Integer.parseInt(newBalance));
-            return true;
-        }else{
-           // balance.addBalance(Integer.parseInt(newBalance));
-            return true;
-        }
+    public boolean setBalance(String newBalance){
+        return true;
     }
     
 }

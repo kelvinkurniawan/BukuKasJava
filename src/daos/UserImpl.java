@@ -82,7 +82,7 @@ public class UserImpl implements UserDao{
                     executeQuery.close();
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(UserImpl.class.getName()).log(Level.SEVERE, null, ex);
+                //Logger.getLogger(UserImpl.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }

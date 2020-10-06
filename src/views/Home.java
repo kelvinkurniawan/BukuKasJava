@@ -4,14 +4,7 @@
  * and open the template in the editor.
  */
 package views;
-import controllers.BalanceController;
 import controllers.HomeController;
-import controllers.TransactionController;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import utils.modules.Routing;
 import utils.modules.SessionManager;
 
 /**
@@ -19,11 +12,6 @@ import utils.modules.SessionManager;
  * @author ASUS
  */
 public class Home extends javax.swing.JFrame {
-    
-    public static ResultSet rs;
-    HomeController homeController = new HomeController();
-    TransactionController tc = new TransactionController();
-    BalanceController bc = new BalanceController();
     
     /**
      * Creates new form Home
@@ -35,19 +23,19 @@ public class Home extends javax.swing.JFrame {
     
     public final void prepareScreen(){
         
+        HomeController homeController = new HomeController();
+        
         // Set tabel model
         jTable1.setModel(homeController.generateTableModel());
         
-        try {
-            // Display balance
-            jLabel10.setText("Rp" + bc.getBalance());
-            jLabel11.setText("Rp" + bc.currentlyBalance());
-            jLabel3.setText("Rp" + tc.getIncome());
-            jLabel6.setText("Rp" + tc.getOutcome());
-            jLabel13.setText(SessionManager.name);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        // Display balance
+        jLabel11.setText("Rp" + homeController.getCurrentlyBalance());
+        jLabel3.setText("Rp" + homeController.getIncome());
+        jLabel6.setText("Rp" + homeController.getOutcome());
+        jLabel10.setText("Rp" + homeController.getBalance());
+        
+        // Display Name
+        jLabel13.setText(SessionManager.name);
     }
 
     /**
@@ -389,13 +377,13 @@ public class Home extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        Routing.setBalance().setVisible(true);
+        new SetBalance().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        Routing.addTrasaction().setVisible(true);
+        new AddTransaction().setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

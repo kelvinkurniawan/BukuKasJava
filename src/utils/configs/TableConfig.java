@@ -26,7 +26,7 @@ public class TableConfig {
     
     // Table balance
     public static final String BALANCE_BALANCEID = "BalanceId";
-    public static final String BALANCE_BALANCE = "balance";   
+    public static final String BALANCE_BALANCE = "Balance";   
     public static final String BALANCE_USERID = "UserId";
     
     // Table Transaction

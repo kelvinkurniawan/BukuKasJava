@@ -7,14 +7,13 @@ package controllers;
 
 
 import java.sql.SQLException;
-import models.User;
 import services.UserService;
 import services.UserServiceImpl;
 
 import utils.modules.Encryption;
 import utils.modules.JdbcUtils;
-import utils.modules.Routing;
 import utils.modules.SessionManager;
+import views.Home;
 /**
  *
  * @author kelvi
@@ -30,22 +29,21 @@ public class AuthenticationController {
  
     public void login(String username, String password){
         
-        userService.getUserByUsername(username);
         
-        if(Encryption.getDecrypt(userService.getUserByUsername(username).getPassword()).equals(password)){
-            
-            System.out.println("Logged In");
-            
-            SessionManager.userId = userService.getUserByUsername(username).getUserId();
-            SessionManager.name = userService.getUserByUsername(username).getName();
-            
-            //Routing.login().setVisible(false);
-            Routing.homeView().setVisible(true);
-            
+        if(userService.getUserByUsername(username) != null){
+            if(Encryption.getDecrypt(userService.getUserByUsername(username).getPassword()).equals(password)){
+
+                System.out.println(SessionManager.userId);
+
+                SessionManager.userId = userService.getUserByUsername(username).getUserId();
+                SessionManager.name = userService.getUserByUsername(username).getName();
+
+                new Home().setVisible(true);
+            }else{
+                System.out.println("Wrong username or password");
+            }
         }else{
-            
             System.out.println("Wrong username or password");
-            
         }
         
     }

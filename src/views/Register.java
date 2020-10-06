@@ -279,7 +279,7 @@ public class Register extends javax.swing.JFrame {
             }else{
                 auth.register(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jPasswordField1.getText());
                 jOptionPane1.showMessageDialog(this, "Registed, please login!");        
-                Routing.login().setVisible(true);
+                //Routing.login().setVisible(true);
                 this.setVisible(false);
             }
         } catch (SQLException ex) {
@@ -299,7 +299,7 @@ public class Register extends javax.swing.JFrame {
     private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        Routing.login().setVisible(true);
+        //Routing.login().setVisible(true);
     }//GEN-LAST:event_jLabel12MouseClicked
 
     /**

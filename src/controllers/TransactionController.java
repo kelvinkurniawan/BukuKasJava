@@ -8,6 +8,7 @@ package controllers;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import models.Transaction;
 import services.TransactionService;
 import services.TransactionServiceImpl;
 import utils.modules.JdbcUtils;
@@ -35,36 +36,27 @@ public class TransactionController {
         }else{
             transType = "Outcome";
         }
-        //  transaction.TransType = transType;
-        //  transaction.TotalTrans = Integer.parseInt(totalTrans);
-        //  transaction.Description = Description;
-        //   transaction.addTransaction();
         
     }
     
     public int getIncome(){
         
+        String filter = "Income";
         int result = 0;
         
-        for (int i = 0; i < transactionService.getTransactionByUserIdFiltered(userId, "Income"); i++) {
-            
-        }
+        result = transactionService.getTransactionByUserIdFiltered(userId, filter).stream().map((transactionByUserIdFiltered) -> 
+            transactionByUserIdFiltered.getTotalTrans()).reduce(result, Integer::sum);
         
         return result;
     }
     
     public int getOutcome(){
+        
+        String filter = "Outcome";
         int result = 0;
         
-        try {
-           // rs = transaction.getTransactionByUserFiltered("Outcome");
-            
-            while(rs.next()){
-                result += rs.getInt("TotalTrans");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(TransactionController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        result = transactionService.getTransactionByUserIdFiltered(userId, filter).stream().map((transactionByUserIdFiltered) -> 
+            transactionByUserIdFiltered.getTotalTrans()).reduce(result, Integer::sum);
         
         return result;
     }
