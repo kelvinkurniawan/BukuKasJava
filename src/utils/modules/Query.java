@@ -8,7 +8,7 @@ package utils.modules;
 import utils.configs.TableConfig;
 
 /**
- *
+ * fungsi menyimpan query sql
  * @author kelvi
  */
 public enum Query {

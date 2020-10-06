@@ -29,11 +29,19 @@ public class PrintPDF {
     TransactionService transactionService; 
     int userId;
     
+    /**
+     * Constructor PrintPDF
+     */
     public PrintPDF(){
         this.transactionService = new TransactionServiceImpl(JdbcUtils.getTransactionDao());
         this.userId = SessionManager.userId;
     }
 
+    /**
+     * Fungsi generate file
+     * @param fileName
+     * @return 
+     */
     public boolean generate(String fileName) {
 
         try {

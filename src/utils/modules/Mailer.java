@@ -22,6 +22,11 @@ import models.User;
  */
 public class Mailer {
     
+    /**
+     * fungsi send email
+     * @param receiver
+     * @param user 
+     */
         public static void sendMail(String receiver, User user) {
 
         // Recipient's email ID needs to be mentioned.

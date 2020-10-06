@@ -6,7 +6,7 @@
 package utils.modules;
 
 /**
- *
+ * fungsi untuk enkripsi
  * @author kelvi
  */
 import java.math.BigInteger;
