@@ -6,7 +6,6 @@
 package controllers;
 
 import javax.swing.table.DefaultTableModel;
-import models.Transaction;
 import services.TransactionService;
 import services.TransactionServiceImpl;
 import utils.modules.JdbcUtils;
@@ -18,7 +17,7 @@ import utils.modules.SessionManager;
  */
 public class HomeController {
     
-    TransactionService transactionService ; 
+    TransactionService transactionService; 
     BalanceController balanceController = new BalanceController();
     TransactionController transactionController = new TransactionController();
     

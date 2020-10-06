@@ -5,7 +5,7 @@
  */
 
 
-import utils.modules.BCrypt;
+import utils.modules.PrintPDF;
 import views.Login;
 
 /**
@@ -17,14 +17,9 @@ public class App {
     
     public static void main(String[] args) {
         
+        PrintPDF pdf = new PrintPDF();
         
         new Login().setVisible(true);
-        String  originalPassword = "password";
-        String generatedSecuredPasswordHash = BCrypt.hashpw(originalPassword, BCrypt.gensalt(12));
-        System.out.println(generatedSecuredPasswordHash);
-
-        boolean matched = BCrypt.checkpw(originalPassword, generatedSecuredPasswordHash);
-        System.out.println(matched);
         
     }
     
