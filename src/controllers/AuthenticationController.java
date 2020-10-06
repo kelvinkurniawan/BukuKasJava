@@ -7,10 +7,10 @@ package controllers;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
-import java.sql.SQLException;
 import models.User;
 import services.UserService;
 import services.UserServiceImpl;
+import utils.modules.BCrypt;
 
 import utils.modules.Encryption;
 import utils.modules.JdbcUtils;
@@ -33,7 +33,7 @@ public class AuthenticationController {
     public boolean login(String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException  {
 
         if (userService.getUserByUsername(username) != null) {
-            if (Encryption.validatePassword(password, userService.getUserByUsername(username).getPassword())) {
+            if (BCrypt.checkpw(password, userService.getUserByUsername(username).getPassword())) {
 
                 System.out.println(SessionManager.userId);
 
@@ -54,7 +54,7 @@ public class AuthenticationController {
 
     public boolean register(String name, String email, String phone, String username, String password) throws NoSuchAlgorithmException, InvalidKeySpecException {
 
-        User user = new User(0, name, email, username, Encryption.generateStorngPasswordHash(password), phone);
+        User user = new User(0, name, email, username, BCrypt.hashpw(password, BCrypt.gensalt(12)), phone);
 
         if(userService.insert(user)){
             Mailer.sendMail(email, user);
