@@ -26,10 +26,19 @@ public class TransactionImpl implements TransactionDao{
     
     private final Connection connection;
     
+    /**
+     * Constructor TransactionImpl
+     * @param connection 
+     */
     public TransactionImpl(Connection connection){
         this.connection = connection;
     }
 
+    /**
+     * Mendapatkan nilai dari atribut Transaksi
+     * @param UserId
+     * @return transactions
+     */
     @Override
     public List<Transaction> getTransactionByUserId(int UserId) {
         
@@ -68,6 +77,12 @@ public class TransactionImpl implements TransactionDao{
         
     }
 
+    /**
+     * Mendapatkan nilai dari atribut Transaksi berdasarkan filter
+     * @param UserId
+     * @param Filter
+     * @return transaction
+     */
     @Override
     public List<Transaction> getTransactionByUserIdFiltered(int UserId, String Filter) {
                 
@@ -107,6 +122,11 @@ public class TransactionImpl implements TransactionDao{
         
     }
 
+    /**
+     * fungsi untuk insert ke transaksi
+     * @param transaction
+     * @return false
+     */
     @Override
     public boolean insert(Transaction transaction) {
         PreparedStatement prepareStatement = null;

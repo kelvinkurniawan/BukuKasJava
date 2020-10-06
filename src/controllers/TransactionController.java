@@ -20,11 +20,21 @@ public class TransactionController {
     TransactionService transactionService; 
     int userId;
     
+    /**
+     * fungsi control transaksi
+     */
     public TransactionController(){
         this.transactionService = new TransactionServiceImpl(JdbcUtils.getTransactionDao());
         this.userId = SessionManager.userId;
     }
     
+    /**
+     * fungsi untuk menambahkan transaksi
+     * @param transTypeTemp
+     * @param totalTrans
+     * @param Description
+     * @return transactionService.insert(transaction)
+     */
     public boolean addTransaction(int transTypeTemp, String totalTrans, String Description){
         String transType;
         
@@ -39,6 +49,10 @@ public class TransactionController {
         
     }
     
+    /**
+     * Fungsi mendapat nilai pemasukan
+     * @return result
+     */
     public int getIncome(){
         
         String filter = "Income";
@@ -50,6 +64,10 @@ public class TransactionController {
         return result;
     }
     
+    /**
+     * fungsi mendapat nilai pengeluaran
+     * @return result
+     */
     public int getOutcome(){
         
         String filter = "Outcome";

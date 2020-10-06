@@ -16,7 +16,9 @@ public class App {
   
     
     public static void main(String[] args) {
-        
+        /**
+         * Fungsi main untuk menampilkan halaman yang di run pertama
+         */
         PrintPDF pdf = new PrintPDF();
         
         new Login().setVisible(true);

@@ -23,11 +23,19 @@ public class BalanceImpl implements BalanceDao{
     
     private final Connection connection;
     
+    /**
+     * Constructor BalanceImpl
+     * @param connection 
+     */
     public BalanceImpl(Connection connection){
         this.connection = connection;
     }
 
-
+    /**
+     * Fungsi untuk mendapatkan nilai saldo berdasar UserId
+     * @param UserId
+     * @return balance
+     */
     @Override
     public Balance getBalanceByUserId(int UserId) {
                 
@@ -64,6 +72,11 @@ public class BalanceImpl implements BalanceDao{
         
     }
 
+    /**
+     * fungsi untuk memasukkan nilai balance
+     * @param balance
+     * @return false
+     */
     @Override
     public boolean insert(Balance balance) {        
         PreparedStatement prepareStatement = null;
