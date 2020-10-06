@@ -42,7 +42,7 @@ public class TransactionImpl implements TransactionDao{
             prepareStatement = connection.prepareStatement(Query.QUERY_SELECT_TRANSACTION_BY_USER_ID.getDisplayQuery());
             prepareStatement.setInt(1, UserId);
             executeQuery = prepareStatement.executeQuery();
-            if (executeQuery.next()) {
+            while (executeQuery.next()) {
                 System.out.println(Query.QUERY_SELECT_TRANSACTION_BY_USER_ID.getDisplayQuery());
                 transaction = new Transaction(executeQuery.getInt("TransId"), executeQuery.getString("TransType"), executeQuery.getString("Description"), executeQuery.getInt("TotalTrans"), executeQuery.getString("Time"), executeQuery.getInt("UserId"));
                 transactions.add(transaction);
@@ -81,7 +81,7 @@ public class TransactionImpl implements TransactionDao{
             prepareStatement.setInt(1, UserId);
             prepareStatement.setString(2, Filter);
             executeQuery = prepareStatement.executeQuery();
-            if (executeQuery.next()) {
+            while (executeQuery.next()) {
                 System.out.println(Query.QUERY_SELECT_TRANSACTION_BY_USER_ID_FILTERED.getDisplayQuery());
                 transaction = new Transaction(executeQuery.getInt("TransId"), executeQuery.getString("TransType"), executeQuery.getString("Description"), executeQuery.getInt("TotalTrans"), executeQuery.getString("Time"), executeQuery.getInt("UserId"));
                 transactions.add(transaction);
@@ -111,7 +111,7 @@ public class TransactionImpl implements TransactionDao{
     public boolean insert(Transaction transaction) {
         PreparedStatement prepareStatement = null;
         try {
-            prepareStatement = connection.prepareStatement(Query.QUERY_INSERT_USER.getDisplayQuery());
+            prepareStatement = connection.prepareStatement(Query.QUERY_INSERT_TRANSACTION.getDisplayQuery());
             prepareStatement.setString(1, transaction.getTransType());
             prepareStatement.setInt(2, transaction.getTotalTrans());
             prepareStatement.setInt(3, transaction.getUserId());

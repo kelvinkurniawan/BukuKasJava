@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import java.util.Arrays;
 import javax.swing.table.DefaultTableModel;
 import models.Transaction;
 import services.TransactionService;
@@ -51,18 +52,19 @@ public class HomeController {
         
         String[] columnNames = {"Tipe", "Nominal", "Keterangan", "Tanggal"};
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
-        
-        transactionService.getTransactionByUserId(id).stream().map((transactionByUserId) -> {
+
+        for (Transaction transactionByUserId : transactionService.getTransactionByUserId(userId)) {
             String type = transactionByUserId.getTransType();
             int nominal = transactionByUserId.getTotalTrans();
             String desc = transactionByUserId.getDescription();
             String time = transactionByUserId.getTime();
             Object[] data = {type, nominal, desc, time};
-            return data;            
-        }).forEachOrdered((data) -> {
+            
+           // System.out.println(Arrays.toString(data));
+            
             tableModel.addRow(data);
-        });
-          
+        }
+        
         return tableModel;
     }
     

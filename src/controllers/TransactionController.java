@@ -5,9 +5,6 @@
  */
 package controllers;
 
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import models.Transaction;
 import services.TransactionService;
 import services.TransactionServiceImpl;
@@ -28,7 +25,7 @@ public class TransactionController {
         this.userId = SessionManager.userId;
     }
     
-    public void addTransaction(int transTypeTemp, String totalTrans, String Description){
+    public boolean addTransaction(int transTypeTemp, String totalTrans, String Description){
         String transType;
         
         if(transTypeTemp == 0){
@@ -36,6 +33,9 @@ public class TransactionController {
         }else{
             transType = "Outcome";
         }
+        
+        Transaction transaction = new Transaction(0, transType, Description, Integer.parseInt(totalTrans), null, userId);
+        return transactionService.insert(transaction);
         
     }
     

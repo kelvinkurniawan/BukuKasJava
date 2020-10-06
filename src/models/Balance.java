@@ -20,8 +20,11 @@ public class Balance {
         this.Balance = Balance;
         this.UserId = UserId;
     }
-    
 
+    public Balance(int i, String balanceVal, int userId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     public int getBalanceID() {
         return BalanceID;
     }

@@ -69,9 +69,8 @@ public class BalanceImpl implements BalanceDao{
         PreparedStatement prepareStatement = null;
         try {
             prepareStatement = connection.prepareStatement(Query.QUERY_INSERT_BALANCE.getDisplayQuery());
-            prepareStatement.setInt(1, balance.getBalanceID());
-            prepareStatement.setInt(2, balance.getBalance());
-            prepareStatement.setInt(3, balance.getUserId());
+            prepareStatement.setInt(1, balance.getBalance());
+            prepareStatement.setInt(2, balance.getUserId());
 
             return prepareStatement.executeUpdate() > 0;
         } catch (SQLException ex) {

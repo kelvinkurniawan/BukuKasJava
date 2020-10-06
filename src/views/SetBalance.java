@@ -6,6 +6,7 @@
 package views;
 
 import controllers.BalanceController;
+import javax.swing.JOptionPane;
 import utils.modules.Routing;
 
 /**
@@ -15,7 +16,6 @@ import utils.modules.Routing;
 public class SetBalance extends javax.swing.JFrame {
 
     BalanceController balanceController = new BalanceController();
-    Routing routing = new Routing();
     
     /**
      * Creates new form SetSaldo
@@ -158,11 +158,18 @@ public class SetBalance extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        routing.homeView().setVisible(true);
+        new Home().setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-
+        if(!balanceController.setBalance(txtSaldoAwal.getText())){
+            JOptionPane.showMessageDialog(this, "Something went wrong");
+        }else{
+            JOptionPane.showMessageDialog(this, "saved!");
+            this.setVisible(false);
+            new Home().setVisible(true);
+        }
+        
     }//GEN-LAST:event_btnSaveActionPerformed
 
     /**

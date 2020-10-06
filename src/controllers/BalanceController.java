@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import models.Balance;
 import services.BalanceService;
 import services.BalanceServiceImpl;
 import utils.modules.JdbcUtils;
@@ -40,7 +41,11 @@ public class BalanceController {
     }
     
     public boolean setBalance(String newBalance){
-        return true;
+        
+        Balance balance = new Balance(0, Integer.parseInt(newBalance), userId);
+        
+        return balanceService.insert(balance);
+        
     }
     
 }

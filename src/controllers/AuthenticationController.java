@@ -20,14 +20,13 @@ import views.Home;
  */
 public class AuthenticationController {
     
-    
     UserService userService;
     
     public AuthenticationController(){
         userService = new UserServiceImpl(JdbcUtils.getUserDao());
     }
  
-    public void login(String username, String password){
+    public boolean login(String username, String password){
         
         
         if(userService.getUserByUsername(username) != null){
@@ -37,13 +36,15 @@ public class AuthenticationController {
 
                 SessionManager.userId = userService.getUserByUsername(username).getUserId();
                 SessionManager.name = userService.getUserByUsername(username).getName();
-
+                
                 new Home().setVisible(true);
+                
+                return true;
             }else{
-                System.out.println("Wrong username or password");
+                return false;
             }
         }else{
-            System.out.println("Wrong username or password");
+            return false;
         }
         
     }

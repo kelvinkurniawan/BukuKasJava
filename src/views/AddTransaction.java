@@ -5,10 +5,8 @@
  */
 package views;
 
-import controllers.HomeController;
 import controllers.TransactionController;
 import javax.swing.JOptionPane;
-import utils.modules.Routing;
 
 /**
  *
@@ -16,8 +14,7 @@ import utils.modules.Routing;
  */
 public class AddTransaction extends javax.swing.JFrame {
     
-    TransactionController tc = new TransactionController();
-    Routing routing = new Routing();
+    TransactionController transactionContrller = new TransactionController();
 
     /**
      * Creates new form TambahTransaksi
@@ -185,19 +182,18 @@ public class AddTransaction extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        routing.homeView().setVisible(true);
+        new Home().setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        if (jTextField1.getText().equals("")) {
+        if (jTextField1.getText().equals("") || txtaDescription.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Please Fill the Amount!","Blank Amount", JOptionPane.ERROR_MESSAGE);
-            return;
         }else{
-            tc.addTransaction(comboxType.getSelectedIndex(), jTextField1.getText(), txtaDescription.getText());
+            transactionContrller.addTransaction(comboxType.getSelectedIndex(), jTextField1.getText(), txtaDescription.getText());
             JOptionPane.showMessageDialog(this, "Saved!");
             this.setVisible(false);
-            routing.homeView().setVisible(true);
+            new Home().setVisible(true);
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
